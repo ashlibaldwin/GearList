@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<head>
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+ <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
+   {% block base_css %}{% endblock %}
+
+		{% block cssContent %}{% endblock %}
+		{% block override_css %}{% endblock %}
+</head>
+<body>
+    <div class="page-header">
+        <h1><a href="/">Ashli's Website</a></h1>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -6,6 +6,10 @@ from django.views import generic
 from .models import Choice, Question
 
 # Create your views here.
+
+def home(request):
+    return render(request, "polls/home.html", {} )
+
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
