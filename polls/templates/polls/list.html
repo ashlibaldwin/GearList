@@ -5,11 +5,13 @@
 {% load staticfiles %}
 {% block head %}
 
+{% block jsContent %}
+<script type = "text/javascript" src="{% static 'polls/list.js' %}"></script>
+{% endblock %}
+
 {% block cssContent %}
 
-
 <link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
-
 <style type="text/css">
 	
 
@@ -20,19 +22,20 @@
 
 <body>
 
-<p>Go To My Lists</p>
-<a href="polls/list"><button class="btn btn-primary">Go</button></a>
+	<div>
+		<h1>List Title</h1>
+		<p>this is a list</p>
+		<button>Add items</button>
+		<ul>
+			<li>
+				item
+			</li>
 
-
+		</ul>
+	</div>
 
 </body>
 
-
-
-<script type = "text/javascript">
-
-
-</script>
 
 
 {% endblock %}
