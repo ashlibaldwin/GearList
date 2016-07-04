@@ -8,7 +8,10 @@ from .models import Choice, Question
 # Create your views here.
 
 def home(request):
-    return render(request, "polls/home.html", {} )
+    return render(request, "polls/home.html", {})
+
+def list (request):
+    return render(request, "polls/list.html", {})
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -45,4 +48,6 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
 
