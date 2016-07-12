@@ -1,2 +1,4 @@
 //js for list.html
-document.getElementById("btnAdd").onClick = //something
+function myFunction() {
+	document.getElementById("myBtn").innerHTML = "red";
+}
