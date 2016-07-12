@@ -10,7 +10,7 @@ from .models import Choice, Question
 def home(request):
     return render(request, "polls/home.html", {})
 
-def list (request):
+def list(request):
     return render(request, "polls/list.html", {})
 
 class IndexView(generic.ListView):
