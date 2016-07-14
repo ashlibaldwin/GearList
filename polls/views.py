@@ -3,15 +3,15 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 
-from .models import Choice, Question
+from .models import Choice, Question, List, Item
 
 # Create your views here.
 
 def home(request):
     return render(request, "polls/home.html", {})
 
-def list(request):
-    return render(request, "polls/list.html", {})
+def profile(request):
+    return render(request, 'polls/profile.html', {})
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -50,4 +50,32 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 
+
+
+def list(request):  
+
+  todo_listing = []  
+
+  for todo_list in List.objects.all():  
+
+    todo_dict = {}  
+
+    todo_dict['list_object'] = todo_list
+
+    todo_dict['item_count'] = todo_list.item_set.count()  
+
+    todo_dict['items_complete'] = todo_list.item_set.filter(completed=True).count()  
+
+    todo_dict['items_name'] = todo_list.item_set
+
+    todo_dict['percent_complete'] = int(float(todo_dict['items_complete']) / todo_dict['item_count'] * 100)  
+
+    todo_listing.append(todo_dict)  
+
+  item_list = []
+
+
+
+
+  return render(request, 'polls/list.html', { 'todo_listing': todo_listing, 'item_list': item_list })
 
