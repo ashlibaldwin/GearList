@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+{% load staticfiles %}
+{% block head %}
+
+{% block jsContent %}
+<script type = "text/javascript" src="{% static 'polls/list.js' %}"></script>
+{% endblock %}
+
+{% block cssContent %}
+
+<link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
+<style type="text/css">
+	
+
+</style>
+{% endblock %}
+{% endblock %}
+{% block content %}
+
+<body>
+	<div>
+		<h1>List Name</h1>  
+		<h2>Items</h2>
+		<ul>
+			<li>Item</li>
+			<li>Item</li>
+			<li>Item</li>
+			<li id="demo"></li>
+
+		</ul>	
+
+{% for list_dict in todo_listing %}  
+
+    <h2>List Title: {{ list_dict.list_object.title }}</h2>  
+
+    <ul>  
+
+      <li>Number of items: {{ list_dict.item_count }}</li>  
+
+      <li>Number completed: {{ list_dict.items_complete }} ({{ list_dict.percent_complete }}%)</li>  
+      
+      <p>{{ list_dict.items_name }}</p>
+
+    </ul>  
+
+
+{% endfor %}  
+
+
+	</div>
+	<div>
+	
+		<button class="btn btn-primary btnAdd" onclick="myFunction()" >Add items</button>
+	
+			
+
+	</div>
+
+</body>
+
+
+
+{% endblock %}
+
+
+
+
+</html>

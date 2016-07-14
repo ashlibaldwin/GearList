@@ -22,39 +22,23 @@
 
 <body>
 	<div>
-		<h1>To-do list status report</h1>  
+		<h1>My Lists</h1>  
+		<button>New List +</button>
 
 {% for list_dict in todo_listing %}  
 
-    <h2>{{ list_dict.list_object.title }}</h2>  
+{% for list_object.title in list_dict %}  
 
-    <ul>  
+   <ul> 
+   	<a href="/polls/listdetail/"><li>{{ list_dict.list_object.title }}</li></a>
+   </ul>
 
-      <li>Number of items: {{ list_dict.item_count }}</li>  
-
-      <li>Number completed: {{ list_dict.items_complete }} ({{ list_dict.percent_complete }}%)</li>  
-      
-      <p>{{ list_dict.items_name }}</p>
-
-    </ul>  
-
-
+{% endfor %} 
 {% endfor %}  
 
 
 	</div>
-	<div>
-		<h1>List Title</h1>
-		<p>this is a list</p>
-		<button class="btn btn-primary btnAdd" onclick="myFunction()" >Add items</button>
-		<ul>
-			<li>
-				item
-			</li>
-			<li id="demo"></li>
 
-		</ul>
-	</div>
 
 </body>
 

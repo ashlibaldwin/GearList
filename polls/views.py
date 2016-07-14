@@ -9,9 +9,12 @@ from .models import Choice, Question, List, Item
 
 def home(request):
     return render(request, "polls/home.html", {})
+    
 
-def profile(request):
-    return render(request, 'polls/profile.html', {})
+def listdetail(request):
+
+    return render(request, 'polls/listdetail.html', {})
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -49,12 +52,13 @@ def vote(request, question_id):
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
+def profile(request):
+    return render(request, 'polls/profile.html', {})
 
 
+def list(request):
 
-def list(request):  
-
-  todo_listing = []  
+  todo_listing = []
 
   for todo_list in List.objects.all():  
 
@@ -68,14 +72,13 @@ def list(request):
 
     todo_dict['items_name'] = todo_list.item_set
 
-    todo_dict['percent_complete'] = int(float(todo_dict['items_complete']) / todo_dict['item_count'] * 100)  
+   
 
     todo_listing.append(todo_dict)  
 
-  item_list = []
+
+    return render(request, 'polls/list.html', {'todo_listing': todo_listing})
 
 
 
-
-  return render(request, 'polls/list.html', { 'todo_listing': todo_listing, 'item_list': item_list })
 

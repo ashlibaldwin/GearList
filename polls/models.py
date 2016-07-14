@@ -65,8 +65,6 @@ class Item(models.Model):
 
   title = models.CharField(max_length=250) 
 
-  name = "brad"
-
   created_date = models.DateTimeField(default=datetime.datetime.now) 
 
   priority = models.IntegerField(choices=PRIORITY_CHOICES, default=2) 
