@@ -9,9 +9,10 @@
 		{% block cssContent %}{% endblock %}
 		{% block override_css %}{% endblock %}
 </head>
+
 <body>
+
     <header>
-    
     <div class="page-header">
         <h1><a href="/">Gear Room</a></h1>
 
@@ -26,17 +27,20 @@
     </div>
     </header>
 
+
+<div class="back">
     <div class="content container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-8">
             {% block content %}
 
             {% endblock %}
             </div>
         </div>
     </div>
+</div>
 
-    <div class="navbar footer">
+    <div class="navbar page-footer">
         <ul>
             <a href="/"><li>Home</li></a>
             <a href="/polls/profile"><li>Profile</li></a>
@@ -45,6 +49,8 @@
 
         </ul>
     </div>
+</div>
+
 </body>
 {% block jsContent %}{% endblock %}
 </html>
