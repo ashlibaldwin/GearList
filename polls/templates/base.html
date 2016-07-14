@@ -2,6 +2,7 @@
 {% load staticfiles %}
 <head>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
    {% block base_css %}{% endblock %}
 
@@ -9,9 +10,22 @@
 		{% block override_css %}{% endblock %}
 </head>
 <body>
+    <header>
+    
     <div class="page-header">
         <h1><a href="/">Gear Room</a></h1>
+
+        <div class="navbar">
+            <ul>
+                <a href="/"><li>Home</li></a>
+                <li>About</li>
+                <a href="/polls/list"><li>My Lists</li></a>
+            </ul>
+
+        </div>
     </div>
+    </header>
+
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
@@ -20,6 +34,16 @@
             {% endblock %}
             </div>
         </div>
+    </div>
+
+    <div class="footer">
+        <ul>
+            <a href="/"><li>Home</li></a>
+             <li>About</li>
+            <a href="/polls/list"><li>My Lists</li></a>
+
+
+        </ul>
     </div>
 </body>
 {% block jsContent %}{% endblock %}
