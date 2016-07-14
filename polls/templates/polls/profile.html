@@ -6,12 +6,11 @@
 {% block head %}
 
 {% block jsContent %}
-<script type = "text/javascript" src="{% static 'polls/list.js' %}"></script>
 {% endblock %}
 
 {% block cssContent %}
 
-<link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
+<link rel="stylesheet"  href="{% static 'polls/profile.css' %}" />
 <style type="text/css">
 	
 
@@ -22,8 +21,21 @@
 
 <body>
 
-<p>Go To My Lists</p>
-<a href="polls/list"><button class="btn btn-primary">Go</button></a>
+<div class="jumbotron">
+	<div class="container">
+		<h1>Ashli</h1>
+		<img src="">
+		<h3>Bio</h3>
+		<p>texttexttext</p>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row text-center">
+		<h2>Go To My Lists</h2>
+		<a href="/polls/list"><button class="btn btn-primary">Go</button></a>
+	</div>
+</div>
 
 </body>
 
