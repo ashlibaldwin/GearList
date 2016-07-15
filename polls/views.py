@@ -9,11 +9,6 @@ from .models import Choice, Question, List, Item
 
 def home(request):
     return render(request, "polls/home.html", {})
-    
-
-def listdetail(request):
-
-    return render(request, 'polls/listdetail.html', {})
 
 
 class IndexView(generic.ListView):
@@ -58,27 +53,14 @@ def profile(request):
 
 def list(request):
 
-  todo_listing = []
+    lists = List.objects.all()
 
-  for todo_list in List.objects.all():  
-
-    todo_dict = {}  
-
-    todo_dict['list_object'] = todo_list
-
-    todo_dict['item_count'] = todo_list.item_set.count()  
-
-    todo_dict['items_complete'] = todo_list.item_set.filter(completed=True).count()  
-
-    todo_dict['items_name'] = List._meta.get_fields()
-
-   
-
-    todo_listing.append(todo_dict)  
+    return render(request, 'polls/list.html', {'lists': lists})
 
 
-    return render(request, 'polls/list.html', {'todo_listing': todo_listing})
+def list_detail(request, pk):
 
+    items = Item.objects.all()
 
-
+    return render(request, 'polls/list_detail.html', {'items': items})
 

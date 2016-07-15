@@ -25,22 +25,15 @@
 		<h1>My Lists</h1>  
 		<button>New List +</button>
 
-{% for item in List.item_set.all %}
-{{ item.title }}
-{% endfor %} 
-		
-{% for list_dict in todo_listing %}  
-
-{{ list_dict.items_name.list_object }}
-
-{% for list_object.title in list_dict %}  
-
+{% for list in lists %}
    <ul> 
-   	<a href="/polls/listdetail/"><li>{{ list_dict.list_object.title }}</li></a>
+   	<a href="{% url 'list_detail' pk=list.pk %}"><li>{{ list }}</li></a>
    </ul>
+{% endfor %}
 
-{% endfor %} 
-{% endfor %}  
+
+
+
 
 
 	</div>
