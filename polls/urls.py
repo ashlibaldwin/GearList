@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'profile/', views.profile, name='profile'),
     url(r'list/', views.list, name='list'),
     url(r'listdetail/', views.listdetail, name='listdetail'),
+    
 ]

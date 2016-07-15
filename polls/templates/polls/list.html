@@ -25,7 +25,13 @@
 		<h1>My Lists</h1>  
 		<button>New List +</button>
 
+{% for item in List.item_set.all %}
+{{ item.title }}
+{% endfor %} 
+		
 {% for list_dict in todo_listing %}  
+
+{{ list_dict.items_name.list_object }}
 
 {% for list_object.title in list_dict %}  
 

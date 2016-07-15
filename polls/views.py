@@ -70,7 +70,7 @@ def list(request):
 
     todo_dict['items_complete'] = todo_list.item_set.filter(completed=True).count()  
 
-    todo_dict['items_name'] = todo_list.item_set
+    todo_dict['items_name'] = List._meta.get_fields()
 
    
 
