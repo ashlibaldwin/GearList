@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^(?P<pk>[0-9]+)/results/$', views.ResultsView.as_view(), name='results'),
     url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
     url(r'profile/', views.profile, name='profile'),
+    url(r'^list/(?P<pk>\d+)/$', views.list_detail, name='list_detail'),
     url(r'list/', views.list, name='list'),
-    url(r'listdetail/', views.listdetail, name='listdetail'),
-    
+
+
 ]
