@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+{% load staticfiles %}
+{% block head %}
+
+{% block jsContent %}
+{% endblock %}
+
+{% block cssContent %}
+
+<link rel="stylesheet"  href="{% static 'polls/profile.css' %}" />
+<style type="text/css">
+	
+
+</style>
+{% endblock %}
+{% endblock %}
+{% block content %}
+
+<body>
+
+<div class="jumbotron">
+	<div class="container">
+		<h1>Ashli</h1>
+		<img src="">
+		<h3>Bio</h3>
+		<p>texttexttext</p>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row text-center">
+		<h2>Go To My Lists</h2>
+		<a href="/polls/list"><button class="btn btn-primary">Go</button></a>
+	</div>
+</div>
+
+</body>
+
+
+
+{% endblock %}
+
+
+
+
+</html>

@@ -2,16 +2,35 @@
 {% load staticfiles %}
 <head>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
    {% block base_css %}{% endblock %}
 
 		{% block cssContent %}{% endblock %}
 		{% block override_css %}{% endblock %}
 </head>
+
 <body>
+
+    <header>
     <div class="page-header">
         <h1><a href="/">Gear Room</a></h1>
+
+        <div class="navbar">
+            <div class="row">
+                <a href="/" class="col-md-4">Home</a>
+                {% if user.is_authenticated %}
+                <a href="/polls/profile" class="col-md-4">Profile</a>
+                <a href="/polls/list" class="col-md-4">My Lists</a>
+                {% endif %}
+            </div>
+
+        </div>
     </div>
+    </header>
+
+
+<div class="back">
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
@@ -21,6 +40,22 @@
             </div>
         </div>
     </div>
+</div>
+<div class="panel panel-default">
+    <div class="navbar footer-panel">
+    </div>
+</div>
+        <div class="row">
+                <a href="/" class="col-md-4">Home</a>
+                {% if user.is_authenticated %}
+                <a href="/polls/profile" class="col-md-4">Profile</a>
+                <a href="/polls/list" class="col-md-4">My Lists</a>
+
+            {% endif %}
+            </div>
+    </div>
+</div>
+
 </body>
 {% block jsContent %}{% endblock %}
 </html>
