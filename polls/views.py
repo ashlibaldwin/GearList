@@ -2,16 +2,14 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
-
-from .models import Choice, Question
-
+from django.shortcuts import redirect
+from .models import Choice, Question, List, Item
+from .forms import ItemForm, ListForm
 # Create your views here.
 
 def home(request):
     return render(request, "polls/home.html", {})
 
-def list(request):
-    return render(request, "polls/list.html", {})
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -48,6 +46,52 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def profile(request):
+    return render(request, 'polls/profile.html', {})
+
+
+def list(request):
+
+    lists = List.objects.all()
+
+    if request.method == "POST":
+        form = ListForm(request.POST)
+        if form.is_valid():
+            list = form.save(commit=False)
+            list.save()
+            return redirect('list_detail', pk=list.pk)
+    else:
+        form = ListForm()
+
+
+    return render(request, 'polls/list.html', {'lists': lists, 'form': form})
+
+
+def list_detail(request, pk):
+
+    
+    lists = List.objects.get(id=pk)
+    items =lists.item_set.all()
+
+
+    form = ItemForm
+
+
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.todo_list = lists
+            item.save()
+            form = ItemForm
+            return HttpResponseRedirect('')
+
+    else:
+        form = ItemForm()
+
+
+    return render(request, 'polls/list_detail.html', {'items': items, 'form': form, 'lists':lists})
 
 
 

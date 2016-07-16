@@ -1,0 +1,14 @@
+.back {
+	background-color: #0b8
+}
+.navbar {
+	/*border-top: solid 1px black;
+	border-bottom: solid 1px black; */
+}
+
+.navbar ul {
+	list-style-type: none;
+}
+.jumbotron {
+	margin-top: 30px; 
+}

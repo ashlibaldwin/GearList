@@ -1,4 +1,6 @@
 //js for list.html
 function myFunction() {
-    document.getElementById("demo").innerHTML = "New Item";
+	var text = prompt ("name item")
+    document.getElementById("demo").innerHTML = text;
+    
 }

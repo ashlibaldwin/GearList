@@ -20,8 +20,30 @@
 
 <body>
 
-<p>Go To My Lists</p>
-<a href="polls/list"><button class="btn btn-primary">Go</button></a>
+<div class="jumbotron">
+	<div class="container text-center">
+		<div class="row">
+			<h1>Gear Room</h1>
+			<p>Make a list for each adventure</p>
+		</div>
+	</div>
+	{% if user.is_authenticated %}
+
+	<div class="container">
+		<div class="row text-center">
+			<a  href="/polls/list"><button type="button" class="btn btn-primary">My Lists</button></a>
+
+			{% else %}
+			<div class="text-center">
+			<button class="btn btn-primary">Log In</button>
+			<button class="btn btn-primary">Sign Up</button>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+
 
 
 
