@@ -33,22 +33,20 @@ def was_published_recently(self):
 
 class List(models.Model): 
 
-    title = models.CharField(max_length=250, unique=True) 
+    title = models.CharField("List Name", max_length=250, unique=True) 
 
     def __str__(self): 
 
         return self.title
 
 
-
-
 class Item(models.Model): 
 
-  title = models.CharField(max_length=250) 
+  title = models.CharField("Item Name", max_length=250) 
 
   created_date = models.DateTimeField(default=datetime.datetime.now) 
 
-  todo_list = models.ForeignKey(List) 
+  todo_list = models.ForeignKey(List)
 
   def __str__(self): 
 

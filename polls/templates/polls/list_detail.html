@@ -13,7 +13,10 @@
 
 <link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
 <style type="text/css">
-	
+
+	ul {
+	list-style-type: none;
+}
 
 </style>
 {% endblock %}
@@ -24,12 +27,28 @@
 
 
 	<div>
-		<h1>List Name</h1>  
-		<h2>Items</h2>
+		<h1>{{ lists }} 
+</h1>  
+		<h3>Add items</h3>
 		<ul>
 
 
-			<li id="demo"></li>
+
+<form method="POST">{% csrf_token %} {{ form.as_p }} 
+
+<button type="submit" class="btn btn-primary" >Add</button>
+
+
+{% for item in items %}
+   <ul> 
+   	<li>{{ item }}</li>
+
+</li>
+   </ul>
+
+</form>
+{% endfor %}
+
 
 
 
@@ -37,7 +56,7 @@
 	</div>
 	<div>
 	
-		<button class="btn btn-primary btnAdd" onclick="myFunction()" >Add items</button>
+	<!--	<button class="btn btn-primary btnAdd" onclick="myFunction()" >Add items</button> -->
 	
 			
 
