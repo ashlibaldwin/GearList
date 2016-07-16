@@ -21,29 +21,29 @@
 <body>
 
 <div class="jumbotron">
-	<div class="container">
+	<div class="container text-center">
 		<div class="row">
-			<h1>This is my Website</h1>
-			<p>On this website you can make and save lists of your gear selection for different types of adventures</p>
-		</div>
-
-		<div class="row">
-			<img src="{% static 'polls/images/background.gif' %}">
+			<h1>Gear Room</h1>
+			<p>Make a list for each adventure</p>
 		</div>
 	</div>
+	{% if user.is_authenticated %}
 
 	<div class="container">
-		<div class="row">
-			<h2>Click "My Lists" to go to your saved lists</h2>
-			<p>That sounds fun I guess</p>
+		<div class="row text-center">
+			<a  href="/polls/list"><button type="button" class="btn btn-primary">My Lists</button></a>
+
+			{% else %}
+			<div class="text-center">
+			<button class="btn btn-primary">Log In</button>
+			<button class="btn btn-primary">Sign Up</button>
+			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>
 
-<div class="containter">
-	<h3>There is some more stuff down here too!</h3>
-	<p>We have pie</p>
-</div>
+
 
 
 

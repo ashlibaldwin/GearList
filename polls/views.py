@@ -2,9 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views import generic
-
+from django.shortcuts import redirect
 from .models import Choice, Question, List, Item
-
+from .forms import ItemForm, ListForm
 # Create your views here.
 
 def home(request):
@@ -55,12 +55,43 @@ def list(request):
 
     lists = List.objects.all()
 
-    return render(request, 'polls/list.html', {'lists': lists})
+    if request.method == "POST":
+        form = ListForm(request.POST)
+        if form.is_valid():
+            list = form.save(commit=False)
+            list.save()
+            return redirect('list_detail', pk=list.pk)
+    else:
+        form = ListForm()
+
+
+    return render(request, 'polls/list.html', {'lists': lists, 'form': form})
 
 
 def list_detail(request, pk):
 
-    items = Item.objects.all()
+    
+    lists = List.objects.get(id=pk)
+    items =lists.item_set.all()
 
-    return render(request, 'polls/list_detail.html', {'items': items})
+
+    form = ItemForm
+
+
+    if request.method == "POST":
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.todo_list = lists
+            item.save()
+            form = ItemForm
+            return HttpResponseRedirect('')
+
+    else:
+        form = ItemForm()
+
+
+    return render(request, 'polls/list_detail.html', {'items': items, 'form': form, 'lists':lists})
+
+
 
