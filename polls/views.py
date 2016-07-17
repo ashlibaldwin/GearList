@@ -1,10 +1,12 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect
 from .models import Choice, Question, List, Item
 from .forms import ItemForm, ListForm
+from django.views.generic.edit import DeleteView # this is the generic view
+from django.core.urlresolvers import reverse_lazy
 # Create your views here.
 
 def home(request):
@@ -61,6 +63,7 @@ def list(request):
             list = form.save(commit=False)
             list.save()
             return redirect('list_detail', pk=list.pk)
+    
     else:
         form = ListForm()
 
@@ -70,13 +73,12 @@ def list(request):
 
 def list_detail(request, pk):
 
-    
+  
     lists = List.objects.get(id=pk)
     items =lists.item_set.all()
 
 
     form = ItemForm
-
 
     if request.method == "POST":
         form = ItemForm(request.POST)
@@ -92,6 +94,15 @@ def list_detail(request, pk):
 
 
     return render(request, 'polls/list_detail.html', {'items': items, 'form': form, 'lists':lists})
+
+def delete_item(request, pk):
+    
+
+    item = get_object_or_404(Item, pk=pk)
+    if request.method=='POST':
+        item.delete()
+        return HttpResponseRedirect('list')
+    return render(request, 'polls/delete_item.html', {'object':item})
 
 
 
