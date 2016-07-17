@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
     url(r'profile/', views.profile, name='profile'),
     url(r'^delete/(?P<pk>\d+)$', views.delete_item, name="delete_item"),
+    url(r'^delete_list/(?P<pk>\d+)$', views.delete_list, name="delete_list"),
     url(r'^list/(?P<pk>\d+)/$', views.list_detail, name='list_detail'),
     url(r'list/', views.list, name='list'),
 

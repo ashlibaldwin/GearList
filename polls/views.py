@@ -104,5 +104,13 @@ def delete_item(request, pk):
         return HttpResponseRedirect('list')
     return render(request, 'polls/delete_item.html', {'object':item})
 
+def delete_list(request, pk):
+
+    list = get_object_or_404(List, pk=pk)
+    if request.method=='POST':
+        list.delete()
+        return HttpResponseRedirect('list')
+    return render(request, 'polls/delete_list.html', {'object':list})
+
 
 
