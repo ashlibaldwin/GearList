@@ -41,12 +41,16 @@
 
 {% for item in items %}
    <ul> 
-   	<li>{{ item }}</li>
+   	
+   	<li>{{ item }} :
+<a href="{% url 'delete_item' item.id %}">Delete</a>
+   	</li></form>
 
 </li>
    </ul>
 
-</form>
+
+
 {% endfor %}
 
 

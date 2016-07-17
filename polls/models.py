@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 import datetime
 from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Question(models.Model):
