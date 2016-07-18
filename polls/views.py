@@ -13,9 +13,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 
 
-
-
-
 def home(request):
     return render(request, "polls/home.html", {})
 
@@ -72,18 +69,20 @@ def list(request):
     username = None
     if not request.user.is_authenticated():
         return HttpResponseRedirect('/')
-    user = request.user.username
- 
-    lists = List.objects.all()
+
+    elif request.user.is_authenticated:
+
+        
+        lists = List.objects.filter(user=request.user)
   
-    form = ListForm(request.POST or None)
-    if request.method == "POST":
-        form = ListForm(request.POST)
-        if form.is_valid():
-            list = form.save(commit=False)
-            user = request.user
-            list.save()
-            return redirect('list_detail', pk=list.pk)
+        form = ListForm(request.POST or None)
+        if request.method == "POST":
+            form = ListForm(request.POST)
+            if form.is_valid():
+                list = form.save(commit=False)
+                list.user = request.user
+                list.save()
+                return redirect('list_detail', pk=list.pk)
     
     else:
         form = ListForm()
