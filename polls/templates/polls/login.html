@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+
+{% load staticfiles %}
+{% block head %}
+
+{% block cssContent %}
+
+
+
+<style type="text/css">
+    
+
+</style>
+{% endblock %}
+{% endblock %}
+{% block content %}
+  <body>
+        <h1>Login</h1>
+
+        <form id="login_form" method="post" action="/polls/login/">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+
+            <input type="submit" value="submit" />
+        </form>
+
+    </body>
+
+    {% endblock %}
+
+
+</html>
