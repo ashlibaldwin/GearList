@@ -56,6 +56,7 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'mysite.urls'
 LOGIN_URL = '/polls/login/'
+#AUTH_PROFILE_MODULE = 'polls.UserProfile'
 
 
 TEMPLATES = [

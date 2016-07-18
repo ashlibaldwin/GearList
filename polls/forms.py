@@ -8,7 +8,6 @@ class ListForm(forms.ModelForm):
         model = List
         fields = ('title',)
         exclude = ('user',)
-       
 
 class ItemForm(forms.ModelForm):
 

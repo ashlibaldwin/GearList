@@ -50,7 +50,7 @@ class UserProfile(models.Model):
 class List(models.Model): 
 
     title = models.CharField("List Name", max_length=250, unique=True) 
-    user = models.ForeignKey(UserProfile)
+    user = models.ForeignKey(User, blank=True)
     def __str__(self): 
 
         return self.title
