@@ -3,13 +3,15 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect
-from .models import Choice, Question, List, Item, User
+from .models import Choice, Question, List, Item, UserProfile
 from .forms import ItemForm, ListForm, UserProfileForm, UserForm
 from django.views.generic.edit import DeleteView # this is the generic view
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
+
 
 
 
@@ -73,7 +75,7 @@ def list(request):
     user = request.user.username
  
     lists = List.objects.all()
-    #list = List(user=request.user)
+  
     form = ListForm(request.POST or None)
     if request.method == "POST":
         form = ListForm(request.POST)
@@ -237,6 +239,7 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
+
 
 
 
