@@ -55,6 +55,8 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+LOGIN_URL = '/polls/login/'
+
 
 TEMPLATES = [
     {

@@ -1,6 +1,5 @@
 from django.contrib import admin
-from rango.models import UserProfile
-from .models import Choice, Question, List, Item
+from .models import Choice, Question, List, Item, UserProfile
 
 class ChoiceInline(admin.TabularInline):
     model = Choice

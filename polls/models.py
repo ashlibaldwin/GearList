@@ -5,6 +5,8 @@ from django.utils.encoding import python_2_unicode_compatible
 import datetime
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Question(models.Model):
@@ -32,10 +34,23 @@ def was_published_recently(self):
     return now - datetime.timedelta(days=1) <= self.pub_date <= now
 
 
+class UserProfile(models.Model):
+    # This line is required. Links UserProfile to a User model instance.
+    user = models.OneToOneField(User)
+
+    # The additional attributes we wish to include.
+    website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+    # Override the __unicode__() method to return out something meaningful!
+    def __unicode__(self):
+        return self.user.username
+
+
 class List(models.Model): 
 
     title = models.CharField("List Name", max_length=250, unique=True) 
-
+    user = models.ForeignKey(UserProfile)
     def __str__(self): 
 
         return self.title
@@ -44,7 +59,7 @@ class List(models.Model):
 class Item(models.Model): 
 
   title = models.CharField("Item Name", max_length=250) 
-
+  #user = models.ForeignKey(UserProfile, null=False, default='admin')
   created_date = models.DateTimeField(default=datetime.datetime.now) 
 
   todo_list = models.ForeignKey(List)
