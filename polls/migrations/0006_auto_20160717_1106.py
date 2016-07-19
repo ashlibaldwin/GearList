@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='item',
             name='user_profile',
-            field=models.ForeignKey(default='admin', to='polls.UserProfile'),
+            field=models.ForeignKey(to='polls.UserProfile'),
         ),
         migrations.AddField(
             model_name='list',
             name='user_profile',
-            field=models.ForeignKey(default='admin', to='polls.UserProfile'),
+            field=models.ForeignKey(to='polls.UserProfile'),
         ),
     ]
