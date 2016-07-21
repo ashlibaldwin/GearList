@@ -35,7 +35,7 @@ ul {
 {% for list in lists %}
    <ul> 
    
-   	<a href="{% url 'list_detail' pk=list.pk %}"><li>{{ list }} : <a href="{% url 'delete_list' pk=list.pk %}">Delete</a></li></a>
+   	<a href="{% url 'polls:list_detail' pk=list.pk %}"><li>{{ list }} : <a href="{% url 'polls:delete_list' pk=list.pk %}">Delete</a></li></a>
 
    
    	

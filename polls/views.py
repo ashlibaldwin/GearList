@@ -71,10 +71,10 @@ def list(request):
         return HttpResponseRedirect('/')
 
     elif request.user.is_authenticated:
-
+       
         
         lists = List.objects.filter(user=request.user)
-  
+        
         form = ListForm(request.POST or None)
         if request.method == "POST":
             form = ListForm(request.POST)
@@ -82,7 +82,7 @@ def list(request):
                 list = form.save(commit=False)
                 list.user = request.user
                 list.save()
-                return redirect('list_detail', pk=list.pk)
+                return redirect('polls:list_detail', pk=list.pk)
     
     else:
         form = ListForm()
@@ -93,8 +93,9 @@ def list(request):
 def list_detail(request, pk):
 
   
-    lists = List.objects.get(id=pk)
+    lists = List.objects.get(pk=pk)
     items =lists.item_set.all()
+   
 
 
     form = ItemForm
@@ -106,7 +107,7 @@ def list_detail(request, pk):
             item.todo_list = lists
             item.save()
             form = ItemForm
-            return HttpResponseRedirect('')
+            return redirect('polls:list_detail', pk=pk)
 
     else:
         form = ItemForm()
