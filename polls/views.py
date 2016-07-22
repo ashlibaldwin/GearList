@@ -16,43 +16,6 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, "polls/home.html", {})
 
-
-class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
-
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Question.objects.order_by('-pub_date')[:5]
-
-
-class DetailView(generic.DetailView):
-    model = Question
-    template_name = 'polls/detail.html'
-
-
-class ResultsView(generic.DetailView):
-    model = Question
-    template_name = 'polls/results.html'
-
-def vote(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.votes += 1
-        selected_choice.save()
-        # Always return an HttpResponseRedirect after successfully dealing
-        # with POST data. This prevents data from being posted twice if a
-        # user hits the Back button.
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-
 @login_required
 def profile(request):
    #u = User.objects.get(username=request.user)
@@ -115,31 +78,29 @@ def list_detail(request, pk):
 
     return render(request, 'polls/list_detail.html', {'items': items, 'form': form, 'lists':lists})
 
-def delete_item(request, pk):
-    
-
-    item = get_object_or_404(Item, pk=pk)
-    if request.method=='POST':
-        item.delete()
-        return HttpResponseRedirect('list')
-    return render(request, 'polls/delete_item.html', {'object':item})
 
 def delete_list(request, pk):
 
     list = get_object_or_404(List, pk=pk)
     if request.method=='POST':
         list.delete()
-        return HttpResponseRedirect('list')
+        return redirect('polls:list')
     return render(request, 'polls/delete_list.html', {'object':list})
+
+def delete_item(request, pk):
+
+    
+    item = get_object_or_404(Item, pk=pk)
+    if request.method=='POST':
+        item.delete()
+        return redirect('polls:list')
+    return render(request, 'polls/delete_item.html', {'object':item})
 
 
 def register(request):
-
-    # A boolean value for telling the template whether the registration was successful.
-    # Set to False initially. Code changes value to True when registration succeeds.
+    
     registered = False
 
-    # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
@@ -150,20 +111,12 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
-
-            # Now we hash the password with the set_password method.
-            # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-
-            # Now sort out the UserProfile instance.
-            # Since we need to set the user attribute ourselves, we set commit=False.
-            # This delays saving the model until we're ready to avoid integrity problems.
             profile = profile_form.save(commit=False)
             profile.user = user
 
-            # Did the user provide a profile picture?
-            # If so, we need to get it from the input form and put it in the UserProfile model.
+
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
 
@@ -174,8 +127,6 @@ def register(request):
             registered = True
 
         # Invalid form or forms - mistakes or something else?
-        # Print problems to the terminal.
-        # They'll also be shown to the user.
         else:
             print (user_form.errors, profile_form.errors)
 
