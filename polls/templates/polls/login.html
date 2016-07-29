@@ -10,26 +10,37 @@
 
 
 <style type="text/css">
-    
 
 </style>
 {% endblock %}
 {% endblock %}
 {% block content %}
-  <body>
+
+<body>
+    <div class="container">
         <h1>Login</h1>
 
         <form id="login_form" method="post" action="/polls/login/">
+            <div class="form-group">
             {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
+            
+            <div class="row">
+                Username: <input type="text" name="username" value="" size="50" />
+            </div>
 
-            <input type="submit" value="submit" />
+           <div class="row">
+                Password: <input type="password" name="password" value="" size="50" />
+            </div>
+
+            <div class="row">
+                <input class="btn btn-primary" type="submit" value="submit" />
+            </div>
+
+            </div>
         </form>
 
-    </body>
+    </div>
+</body>
 
     {% endblock %}
 
