@@ -147,6 +147,7 @@ def user_login(request):
         # Gather the username and password provided by the user.
         # This information is obtained from the login form.
         username = request.POST['username']
+      #  email = request.POST['email']
         password = request.POST['password']
 
         # Use Django's machinery to attempt to see if the username/password
