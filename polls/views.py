@@ -56,7 +56,7 @@ def list(request):
 def list_detail(request, pk):
 
   
-    lists = List.objects.get(pk=pk)
+    lists = List.objects.get(user=request.user, pk=pk)
     items =lists.item_set.all()
    
 
