@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.shortcuts import redirect
-from .models import Choice, Question, List, Item, UserProfile
+from .models import List, Item, UserProfile
 from .forms import ItemForm, ListForm, UserProfileForm, UserForm
 from django.views.generic.edit import DeleteView # this is the generic view
 from django.core.urlresolvers import reverse_lazy
@@ -89,7 +89,6 @@ def delete_list(request, pk):
 
 def delete_item(request, pk):
 
-    
     item = get_object_or_404(Item, pk=pk)
     if request.method=='POST':
         item.delete()
@@ -191,8 +190,6 @@ def user_logout(request):
 
     # Take the user back to the homepage.
     return HttpResponseRedirect('/')
-
-
 
 
 
