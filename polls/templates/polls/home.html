@@ -3,6 +3,7 @@
 
 
 {% load staticfiles %}
+{% load static %}
 {% block head %}
 
 {% block cssContent %}
@@ -11,7 +12,17 @@
 <link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
 
 <style type="text/css">
-	
+
+.home-images {
+	overflow: hidden;
+	padding-top: 30px;
+}
+
+.desert {
+	background-image: url("{% static 'polls/images/desert.jpeg' %}");
+	min-height: 400px;
+}
+
 
 </style>
 {% endblock %}
@@ -27,20 +38,45 @@
 			<p>Make a list for each adventure</p>
 		</div>
 	</div>
+
+
+
 	{% if user.is_authenticated %}
 
-	<div class="container">
+	<div class="container desert">
 		<div class="row text-center">
-			<a  href="/polls/list"><button type="button" class="btn btn-primary">My Lists</button></a>
-
-			{% else %}
-			<div class="text-center">
-			<a href="polls/login"><button class="btn btn-primary">Log In</button></a>
-			<a href="/polls/register"><button class="btn btn-primary">Sign Up</button></a>
-			</div>
-			{% endif %}
+			<a  href="/polls/list"><button style="margin-top:60px" type="button" class="btn btn-primary btn-lg">Go To My Lists</button></a>
 		</div>
 	</div>
+			{% else %}
+
+
+	<div class="text-center">
+		<a href="polls/login"><button class="btn btn-primary">Log In</button></a>
+		<a href="/polls/register"><button class="btn btn-primary">Sign Up</button></a>
+	</div>
+
+	<div class="row home-images">
+
+		<div class="col-md-4 text-center">
+			<img src="{% static 'polls/images/van.jpeg' %}" />
+			<p>Pack</p>
+		</div>
+
+		<div class="col-md-4 text-center">
+			<img src="{% static 'polls/images/hiker.jpeg' %}" />
+			<p>Adventure</p>
+		</div>
+
+		<div class="col-md-4 text-center">
+			<img src="{% static 'polls/images/water.jpeg' %}" />
+			<p>Repeat</p>
+		</div>
+
+	</div>
+			
+			{% endif %}
+		
 </div>
 
 
