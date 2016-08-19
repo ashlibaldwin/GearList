@@ -18,8 +18,8 @@
 
         <div class="navbar">
             <div class="row col-md-6">
-                <a href="/" class="col-md-3">Home</a>
                 {% if user.is_authenticated %}
+                <a href="/" class="col-md-3">Home</a>
                 <a href="/polls/profile" class="col-md-3">Profile</a>
                 <a href="/polls/list" class="col-md-3">My Lists</a>
                 <a href="/polls/logout" class="col-md-3">Log Out</a>
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="panel panel-default">
+<!--
     <div class="navbar footer-panel">
         <div class="row col-md-6">
                 <a href="/" class="col-md-4">Home</a>
@@ -53,10 +53,10 @@
 
             {% endif %}
         </div>
-    </div>
+    
 </div>
 
-  
+-->
 
 </body>
 {% block jsContent %}{% endblock %}

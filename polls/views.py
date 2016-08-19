@@ -92,7 +92,9 @@ def delete_item(request, pk):
     item = get_object_or_404(Item, pk=pk)
     if request.method=='POST':
         item.delete()
-        return redirect('polls:list')
+        list_id = item.todo_list.id
+        list_url = "/polls/list_detail/" +str(list_id)
+        return redirect(list_url)
     return render(request, 'polls/delete_item.html', {'object':item})
 
 
@@ -115,7 +117,6 @@ def register(request):
             profile = profile_form.save(commit=False)
             profile.user = user
 
-
             if 'picture' in request.FILES:
                 profile.picture = request.FILES['picture']
 
@@ -124,6 +125,14 @@ def register(request):
 
             # Update our variable to tell the template registration was successful.
             registered = True
+
+            #login the new user automatically and redirect to homepage
+
+           # user = authenticate(username=username, password=password)
+            #login(self.request, user)
+          
+            #return HttpResponseRedirect("/")
+
 
         # Invalid form or forms - mistakes or something else?
         else:
@@ -146,7 +155,7 @@ def user_login(request):
         # Gather the username and password provided by the user.
         # This information is obtained from the login form.
         username = request.POST['username']
-      #  email = request.POST['email']
+        #email = request.POST['email']
         password = request.POST['password']
 
         # Use Django's machinery to attempt to see if the username/password
