@@ -2,9 +2,9 @@ from django.conf.urls import url
 
 from . import views
 
-app_name = 'polls'
+app_name = 'gear'
 
-app_name = 'polls'
+app_name = 'gear'
 urlpatterns = [
     url(r'^profile/', views.profile, name='profile'),
     url(r'^list/', views.list, name='list'),

@@ -6,12 +6,12 @@
 {% block head %}
 
 {% block jsContent %}
-<script type = "text/javascript" src="{% static 'polls/list.js' %}"></script>
+<script type = "text/javascript" src="{% static 'gear/list.js' %}"></script>
 {% endblock %}
 
 {% block cssContent %}
 
-<link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
+<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
 <style type="text/css">
 
 ul {
@@ -55,8 +55,8 @@ ul {
    		<ul> 
    			<li class="inner-box">	
    				<h2>{{ list }}</h2>
-   				<a type="button" class="btn btn-primary" href="{% url 'polls:list_detail' pk=list.pk %}"><i class="glyphicon glyphicon-eye-open"></i></a>
-   				<a type="button" class="btn btn-danger" href="{% url 'polls:delete_list' list.id %}"><i class="glyphicon glyphicon-trash"></i></a>
+   				<a type="button" class="btn btn-primary" href="{% url 'gear:list_detail' pk=list.pk %}"><i class="glyphicon glyphicon-eye-open"></i></a>
+   				<a type="button" class="btn btn-danger" href="{% url 'gear:delete_list' list.id %}"><i class="glyphicon glyphicon-trash"></i></a>
    			</li>
    		</ul>
    	</div>

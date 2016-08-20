@@ -9,7 +9,7 @@
 {% block cssContent %}
 
 
-<link rel="stylesheet"  href="{% static 'polls/style.css' %}" />
+<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
 
 <style type="text/css">
 
@@ -19,7 +19,7 @@
 }
 
 .desert {
-	background-image: url("{% static 'polls/images/desert.jpeg' %}");
+	background-image: url("{% static 'gear/images/desert.jpeg' %}");
 	min-height: 400px;
 }
 
@@ -45,31 +45,31 @@
 
 	<div class="container desert">
 		<div class="row text-center">
-			<a  href="/polls/list"><button style="margin-top:60px" type="button" class="btn btn-primary btn-lg">Go To My Lists</button></a>
+			<a  href="/gear/list"><button style="margin-top:60px" type="button" class="btn btn-primary btn-lg">Go To My Lists</button></a>
 		</div>
 	</div>
 			{% else %}
 
 
 	<div class="text-center">
-		<a href="polls/login"><button class="btn btn-primary">Log In</button></a>
-		<a href="/polls/register"><button class="btn btn-primary">Sign Up</button></a>
+		<a href="gear/login"><button class="btn btn-primary">Log In</button></a>
+		<a href="/gear/register"><button class="btn btn-primary">Sign Up</button></a>
 	</div>
 
 	<div class="row home-images">
 
 		<div class="col-md-4 text-center">
-			<img src="{% static 'polls/images/van.jpeg' %}" />
+			<img src="{% static 'gear/images/van.jpeg' %}" />
 			<p>Pack</p>
 		</div>
 
 		<div class="col-md-4 text-center">
-			<img src="{% static 'polls/images/hiker.jpeg' %}" />
+			<img src="{% static 'gear/images/hiker.jpeg' %}" />
 			<p>Adventure</p>
 		</div>
 
 		<div class="col-md-4 text-center">
-			<img src="{% static 'polls/images/water.jpeg' %}" />
+			<img src="{% static 'gear/images/water.jpeg' %}" />
 			<p>Repeat</p>
 		</div>
 
