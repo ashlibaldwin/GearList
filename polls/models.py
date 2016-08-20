@@ -24,7 +24,7 @@ class UserProfile(models.Model):
 
 class List(models.Model): 
 
-    title = models.CharField("Add List", max_length=250, unique=False) 
+    title = models.CharField("Add List", max_length=250, unique=False, editable=True) 
     user = models.ForeignKey(User, blank=True)
     def __str__(self): 
 
