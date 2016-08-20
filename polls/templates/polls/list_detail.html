@@ -18,36 +18,44 @@
 	list-style-type: none;
 }
 
+.strikethrough:checked + span{
+  text-decoration:line-through;
+  font-style: italic;
+}
+
+.btn {
+	margin:5px;
+}
+
 </style>
 {% endblock %}
 {% endblock %}
 {% block content %}
 
 <body>
-
-
 	<div>
-		<h1>{{ lists }} 
-</h1>  
+		<div class="row text-center">
+			<h1>{{ lists }} </h1>  
+		</div>
+		
 		<h3>Add items</h3>
-		<ul>
+
+		<form method="POST">{% csrf_token %} {{ form.as_p }} 
+		<button type="submit" class="btn btn-primary" >Add</button>
+
+		{% for item in items %}
+   		<ul> 
+   			<li>
+   		<input type="checkbox" class="strikethrough" />
+   		<span class="item">{{ item }}</span>
+		<a type="button" class="btn btn-danger" href="{% url 'polls:delete_item' item.id %}"><i class="glyphicon glyphicon-trash"></i></a>
 
 
+   	</li>
 
-<form method="POST">{% csrf_token %} {{ form.as_p }} 
-
-<button type="submit" class="btn btn-primary" >Add</button>
+   </form>
 
 
-{% for item in items %}
-   <ul> 
-   	
-   	<li>{{ item }} :
-<a type="button" class="btn btn-danger" href="{% url 'polls:delete_item' item.id %}">Delete</a>
-
-   	</li></form>
-
-</li>
    </ul>
 
 
