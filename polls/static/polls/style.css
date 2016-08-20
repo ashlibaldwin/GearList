@@ -1,6 +1,19 @@
+/* stop shit from touching the sides of the page*/
+body {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+/*space about footer box*/
+.panel-default {
+	margin-top: 20px;
+}
+
+/* main content container*/
 .back {
 	background-color: #0b8
 }
+
 .navbar {
 	/*border-top: solid 1px black;
 	border-bottom: solid 1px black; */
@@ -9,6 +22,8 @@
 .navbar ul {
 	list-style-type: none;
 }
+
+/* home.html */
 .jumbotron {
 	margin-top: 30px; 
 }

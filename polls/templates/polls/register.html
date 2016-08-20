@@ -10,37 +10,77 @@
 
 
 <style type="text/css">
-    
+
+.container {
+    background-image: url("{% static 'polls/images/utah.jpg' %}");
+    background-size: cover;
+    min-height: 700px;
+    min-width: 100%;
+}
+
+body {
+    color: white;
+}
+
+.input-area {
+    padding-top:5px;
+    padding-bottom: 5px;
+    color:black;
+    font-weight: bold;
+}
+
+.helptext{
+  display: none;
+}
 
 </style>
+
 {% endblock %}
 {% endblock %}
 {% block content %}
-    <body>
+   
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-md-offset-3 text-center">
+                <h2>Pack.</h2>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <h2>Adventure.</h2>
+            </div>
+
+            <div class="col-md-2 text-center">
+                <h2>Repeat.</h2>
+            </div>
+        </div>
+    
+
+    <div class="row text-center">
         <h1>Register</h1>
 
         {% if registered %}
-       <strong>thank you for registering!</strong>
-        <a href="/">Return to the homepage.</a><br />
+            <h2>thank you for registering!
+            <a href="/polls/login">Click here to login</a></h2><br />
+
         {% else %}
-        <strong>register here!</strong><br />
 
-        <form id="user_form" method="post" action="/polls/register/"
-                enctype="multipart/form-data">
+            <form id="user_form" method="post" action="/polls/register/">
+                <!--enctype="multipart/form-data">-->
 
-            {% csrf_token %}
+                <div class="form-group col-md-2 col-md-offset-5 input-area">
 
-            <!-- Display each form. The as_p method wraps each element in a paragraph
-                 (<p>) element. This ensures each element appears on a new line,
-                 making everything look neater. -->
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+                {% csrf_token %}
 
-            <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register" />
-        </form>
+                {{ user_form.as_p }}
+          <!--  {{ profile_form.as_p }} -->
+            <input type="submit" class="btn btn-primary" name="submit" value="Register" />
+
+                </div>
+            </form>
         {% endif %}
-    </body>
+    </div>
+</body>
 
     {% endblock %}
 

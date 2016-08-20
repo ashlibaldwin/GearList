@@ -18,47 +18,52 @@ ul {
 	list-style-type: none;
 }
 
+.box {
+	border: 2px solid black;
+	margin-bottom: 15px;
+}
+
+.inner-box {
+	margin-top: 5px;
+}
+
+
 </style>
 {% endblock %}
 {% endblock %}
 {% block content %}
 
-<body>
-	<div>
-		<h1>My Lists</h1>  
+<body onload="return ran_col()">
+	<div class="container">
+		<div class="row text-center">
+			<h1>My Lists</h1>  
+		</div>
 
-<form method="POST">{% csrf_token %} {{ form.as_p }} 
+		<div class="row">
+			<form method="POST">{% csrf_token %} {{ form.as_p }} 
+				<button style="margin-bottom:30px" type="submit" class="btn btn-primary">Add</button>
+			</form>
+		</div>
 
-<button type="submit" class="btn btn-primary">Add</button>
-</form>
-
-{% for list in lists %}
-   <ul> 
-   
-   	<a href="{% url 'list_detail' pk=list.pk %}"><li>{{ list }} : <a href="{% url 'delete_list' pk=list.pk %}">Delete</a></li></a>
-
-   
-   	
-   </ul>
-{% endfor %}
-
-
-
-
-
-
+	{% for list in lists %}
+   		<div class="container box" id="lists">
+   		<ul> 
+   			<li class="inner-box">	
+   				<h2>{{ list }}</h2>
+   				<a type="button" class="btn btn-primary" href="{% url 'polls:list_detail' pk=list.pk %}">Edit</a>
+   				<a type="button" class="btn btn-danger" href="{% url 'polls:delete_list' list.id %}">Delete</a>
+   			</li>
+   		</ul>
+   	</div>
+	{% endfor %}
 
 
 	</div>
 
-
 </body>
 
 
-
 {% endblock %}
-
-
 
 
 </html>
