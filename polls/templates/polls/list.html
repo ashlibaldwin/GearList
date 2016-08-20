@@ -48,20 +48,20 @@ ul {
 			</form>
 		</div>
 
+
+
 	{% for list in lists %}
    		<div class="container box">
    		<ul> 
    			<li class="inner-box">	
    				<h2>{{ list }}</h2>
-   				<a type="button" class="btn btn-primary" href="{% url 'polls:list_detail' pk=list.pk %}">View</a>
-   				<a type="button" class="btn btn-danger" href="{% url 'polls:delete_list' list.id %}">Delete</a>
+   				<a type="button" class="btn btn-primary" href="{% url 'polls:list_detail' pk=list.pk %}"><i class="glyphicon glyphicon-eye-open"></i></a>
+   				<a type="button" class="btn btn-danger" href="{% url 'polls:delete_list' list.id %}"><i class="glyphicon glyphicon-trash"></i></a>
    			</li>
    		</ul>
    	</div>
 	{% endfor %}
 
-
-	</div>
 
 </body>
 
