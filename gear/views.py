@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 
 
 def home(request):
-    return render(request, "polls/home.html", {})
+    return render(request, "gear/home.html", {})
 
 @login_required
 def profile(request):
@@ -25,7 +25,7 @@ def profile(request):
    #except:
      #userprofile = None
 
-     return render(request, 'polls/profile.html', {})
+     return render(request, 'gear/profile.html', {})
 
 @login_required
 def list(request):
@@ -45,12 +45,12 @@ def list(request):
                 list = form.save(commit=False)
                 list.user = request.user
                 list.save()
-                return redirect('polls:list_detail', pk=list.pk)
+                return redirect('gear:list_detail', pk=list.pk)
     
     else:
         form = ListForm()
 
-    return render(request, 'polls/list.html', {'lists': lists, 'form': form})
+    return render(request, 'gear/list.html', {'lists': lists, 'form': form})
 
 @login_required
 def list_detail(request, pk):
@@ -70,13 +70,13 @@ def list_detail(request, pk):
             item.todo_list = lists
             item.save()
             form = ItemForm
-            return redirect('polls:list_detail', pk=pk)
+            return redirect('gear:list_detail', pk=pk)
 
     else:
         form = ItemForm()
 
 
-    return render(request, 'polls/list_detail.html', {'items': items, 'form': form, 'lists':lists})
+    return render(request, 'gear/list_detail.html', {'items': items, 'form': form, 'lists':lists})
 
 
 def delete_list(request, pk):
@@ -84,8 +84,8 @@ def delete_list(request, pk):
     list = get_object_or_404(List, pk=pk)
     if request.method=='POST':
         list.delete()
-        return redirect('polls:list')
-    return render(request, 'polls/delete_list.html', {'object':list})
+        return redirect('gear:list')
+    return render(request, 'gear/delete_list.html', {'object':list})
 
 def delete_item(request, pk):
 
@@ -93,9 +93,9 @@ def delete_item(request, pk):
     if request.method=='POST':
         item.delete()
         list_id = item.todo_list.id
-        list_url = "/polls/list_detail/" +str(list_id)
+        list_url = "/gear/list_detail/" +str(list_id)
         return redirect(list_url)
-    return render(request, 'polls/delete_item.html', {'object':item})
+    return render(request, 'gear/delete_item.html', {'object':item})
 
 
 def register(request):
@@ -146,7 +146,7 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request,
-            'polls/register.html',
+            'gear/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 def user_login(request):
@@ -185,7 +185,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'polls/login.html', {})
+        return render(request, 'gear/login.html', {})
 
 @login_required
 def restricted(request):

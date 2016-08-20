@@ -12,7 +12,7 @@
 <style type="text/css">
 
 .container {
-    background-image: url("{% static 'polls/images/stars.jpeg' %}");
+    background-image: url("{% static 'gear/images/stars.jpeg' %}");
     background-size: cover;
     min-height: 600px;
     min-width: 100%;
@@ -58,7 +58,7 @@ body {
     <div class=" text-center">
         <h3>Log In</h3>
 
-        <form id="login_form" method="post" action="/polls/login/">
+        <form id="login_form" method="post" action="/gear/login/">
             <div class="form-group">
             {% csrf_token %}
             

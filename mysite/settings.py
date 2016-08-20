@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
+    'gear.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
-LOGIN_URL = '/polls/login/'
+LOGIN_URL = '/gear/login/'
 #AUTH_PROFILE_MODULE = 'polls.UserProfile'
 
 

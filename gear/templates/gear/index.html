@@ -2,14 +2,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'gear/style.css' %}" />
 
 {% block content %}
 
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <li><a href="{% url 'gear:detail' question.id %}">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
