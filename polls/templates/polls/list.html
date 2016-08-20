@@ -19,8 +19,10 @@ ul {
 }
 
 .box {
-	border: 2px solid black;
+	border: 1px solid black;
+	border-radius: 3px;
 	margin-bottom: 15px;
+	background-color: #00BFFF;
 }
 
 .inner-box {
@@ -28,12 +30,13 @@ ul {
 }
 
 
+
 </style>
 {% endblock %}
 {% endblock %}
 {% block content %}
 
-<body onload="return ran_col()">
+<body>
 	<div class="container">
 		<div class="row text-center">
 			<h1>My Lists</h1>  
@@ -46,11 +49,11 @@ ul {
 		</div>
 
 	{% for list in lists %}
-   		<div class="container box" id="lists">
+   		<div class="container box">
    		<ul> 
    			<li class="inner-box">	
    				<h2>{{ list }}</h2>
-   				<a type="button" class="btn btn-primary" href="{% url 'polls:list_detail' pk=list.pk %}">Edit</a>
+   				<a type="button" class="btn btn-primary" href="{% url 'polls:list_detail' pk=list.pk %}">View</a>
    				<a type="button" class="btn btn-danger" href="{% url 'polls:delete_list' list.id %}">Delete</a>
    			</li>
    		</ul>
