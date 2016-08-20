@@ -43,7 +43,8 @@
    <ul> 
    	
    	<li>{{ item }} :
-<a href="{% url 'polls:delete_item' item.id %}">Delete</a>
+<a type="button" class="btn btn-danger" href="{% url 'polls:delete_item' item.id %}">Delete</a>
+
    	</li></form>
 
 </li>
