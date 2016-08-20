@@ -24,7 +24,7 @@ class UserProfile(models.Model):
 
 class List(models.Model): 
 
-    title = models.CharField("Add List", max_length=250, unique=False) 
+    title = models.CharField("Add List", max_length=250, unique=False, editable=True) 
     user = models.ForeignKey(User, blank=True)
     def __str__(self): 
 
@@ -33,7 +33,7 @@ class List(models.Model):
 
 class Item(models.Model): 
 
-  title = models.CharField("Add Item", max_length=250) 
+  title = models.CharField("Add Item", max_length=250, unique=False) 
   #user = models.ForeignKey(UserProfile, null=False, default='admin')
   created_date = models.DateTimeField(default=datetime.datetime.now) 
 
