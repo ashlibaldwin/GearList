@@ -127,11 +127,12 @@ def register(request):
             registered = True
 
             #login the new user automatically and redirect to homepage
-
-           # user = authenticate(username=username, password=password)
-            #login(self.request, user)
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            login(request, user)
           
-            #return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/")
 
 
         # Invalid form or forms - mistakes or something else?
