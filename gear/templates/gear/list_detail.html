@@ -6,6 +6,7 @@
 {% block head %}
 
 {% block jsContent %}
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type = "text/javascript" src="{% static 'gear/list.js' %}"></script>
 {% endblock %}
 
@@ -27,6 +28,7 @@
 	margin:5px;
 }
 
+
 </style>
 {% endblock %}
 {% endblock %}
@@ -41,28 +43,22 @@
 		<h3>Add items</h3>
 
 		<form method="POST">{% csrf_token %} {{ form.as_p }} 
-		<button type="submit" class="btn btn-primary" >Add</button>
+		<button type="submit" class="btn btn-primary btnin" >Add</button>
 
-		{% for item in items %}
-   		<ul> 
-   			<li>
-   		<input type="checkbox" class="strikethrough" />
-   		<span class="item">{{ item }}</span>
-		<a type="button" class="btn btn-danger" href="{% url 'gear:delete_item' item.id %}"><i class="glyphicon glyphicon-trash"></i></a>
+		<div id="checkbox-container">
+		<ul> 
+			{% for item in items %}
+			<li>
+		   		<input type="checkbox" id="{{item.title}}" class="strikethrough" />
+		   		<span class="item">{{ item }}</span>
+				<a type="button" class="btn btn-danger" href="{% url 'gear:delete_item' item.id %}"><i class="glyphicon glyphicon-trash"></i></a>
 
+		   	</li>
+		   	{% endfor %}
+	   	</ul>
+	   	</div>
 
-   	</li>
-
-   </form>
-
-
-   </ul>
-
-
-
-{% endfor %}
-
-
+	   </form>
 
 
 
