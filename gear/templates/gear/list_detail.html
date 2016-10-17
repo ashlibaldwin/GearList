@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
-
+{% load render_bundle from webpack_loader %}
 
 {% load staticfiles %}
 {% block head %}
@@ -35,12 +35,15 @@
 {% block content %}
 
 <body>
+	
+{% render_bundle 'main' %} 
+	
 	<div>
 		<div class="row text-center">
 			<h1>{{ lists }} </h1>  
 		</div>
 		
-		<h3>Add items</h3>
+		<h3></h3>
 
 		<form method="POST">{% csrf_token %} {{ form.as_p }} 
 		<button type="submit" class="btn btn-primary btnin" >Add</button>

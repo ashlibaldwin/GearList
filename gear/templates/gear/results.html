@@ -1,9 +1,34 @@
-<h1>{{ question.question_text }}</h1>
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
 
-<a href="{% url 'gear:detail' question.id %}">Vote again?</a>
+{% load staticfiles %}
+{% block head %}
+
+{% block jsContent %}
+<script type = "text/javascript" src="{% static 'gear/list.js' %}"></script>
+{% endblock %}
+
+{% block cssContent %}
+
+<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
+
+{% endblock %}
+{% endblock %}
+{% block content %}
+
+<body>
+	<div id="container">
+{% render_bundle 'main' %} 
+		
+	</div>
+
+
+</body>
+
+
+{% endblock %}
+
+
+</html>
