@@ -16,6 +16,9 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, "gear/home.html", {})
 
+def results(request):
+    return render(request, "gear/results.html", {})
+
 @login_required
 def profile(request):
    #u = User.objects.get(username=request.user)
