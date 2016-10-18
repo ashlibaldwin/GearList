@@ -32,6 +32,7 @@
     "jsx-loader": "^0.13.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-edit-inline": "^1.0.7",
     "webpack": "^1.13.2",
     "webpack-bundle-tracker": "0.0.93",
     "webpack-dev-server": "^1.16.2"
