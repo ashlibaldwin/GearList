@@ -54,208 +54,40 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactBootstrap = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"react-bootstrap\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Hello = _react2.default.createClass({
-	  displayName: 'Hello',
+	    displayName: 'Hello',
 
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Hi, React!'
-	    );
-	  }
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Hi, React!'
+	        );
+	    }
 	});
+	_reactDom2.default.render(_react2.default.createElement(Hello, null), document.getElementById('parent'));
 
-	function FieldGroup(_ref) {
-	  var id = _ref.id;
-	  var label = _ref.label;
-	  var help = _ref.help;
+	var items = ['ashli', 'andrew', 'riley', 'carson'];
 
-	  return _react2.default.createElement(
-	    FormGroup,
-	    { controlId: id },
-	    _react2.default.createElement(
-	      ControlLabel,
-	      null,
-	      label
-	    ),
-	    _react2.default.createElement(FormControl, props),
-	    help && _react2.default.createElement(
-	      HelpBlock,
-	      null,
-	      help
-	    )
-	  );
-	}
+	var List = _react2.default.createClass({
+	    displayName: 'List',
 
-	var formInstance = _react2.default.createClass({
-	  displayName: 'formInstance',
-
-	  render: function render() {
-	    _react2.default.createElement(
-	      'form',
-	      null,
-	      _react2.default.createElement(FieldGroup, {
-	        id: 'formControlsText',
-	        type: 'text',
-	        label: 'Text',
-	        placeholder: 'Enter text'
-	      }),
-	      _react2.default.createElement(FieldGroup, {
-	        id: 'formControlsEmail',
-	        type: 'email',
-	        label: 'Email address',
-	        placeholder: 'Enter email'
-	      }),
-	      _react2.default.createElement(FieldGroup, {
-	        id: 'formControlsPassword',
-	        label: 'Password',
-	        type: 'password'
-	      }),
-	      _react2.default.createElement(FieldGroup, {
-	        id: 'formControlsFile',
-	        type: 'file',
-	        label: 'File',
-	        help: 'Example block-level help text here.'
-	      }),
-	      _react2.default.createElement(
-	        _reactBootstrap.Checkbox,
-	        { checked: true, readOnly: true },
-	        'Checkbox'
-	      ),
-	      _react2.default.createElement(
-	        Radio,
-	        { checked: true, readOnly: true },
-	        'Radio'
-	      ),
-	      _react2.default.createElement(
-	        FormGroup,
-	        null,
-	        _react2.default.createElement(
-	          _reactBootstrap.Checkbox,
-	          { inline: true },
-	          '1'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          _reactBootstrap.Checkbox,
-	          { inline: true },
-	          '2'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          _reactBootstrap.Checkbox,
-	          { inline: true },
-	          '3'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        FormGroup,
-	        null,
-	        _react2.default.createElement(
-	          Radio,
-	          { inline: true },
-	          '1'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          Radio,
-	          { inline: true },
-	          '2'
-	        ),
-	        ' ',
-	        _react2.default.createElement(
-	          Radio,
-	          { inline: true },
-	          '3'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        FormGroup,
-	        { controlId: 'formControlsSelect' },
-	        _react2.default.createElement(
-	          ControlLabel,
-	          null,
-	          'Select'
-	        ),
-	        _react2.default.createElement(
-	          FormControl,
-	          { componentClass: 'select', placeholder: 'select' },
-	          _react2.default.createElement(
-	            'option',
-	            { value: 'select' },
-	            'select'
-	          ),
-	          _react2.default.createElement(
-	            'option',
-	            { value: 'other' },
-	            '...'
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        FormGroup,
-	        { controlId: 'formControlsSelectMultiple' },
-	        _react2.default.createElement(
-	          ControlLabel,
-	          null,
-	          'Multiple select'
-	        ),
-	        _react2.default.createElement(
-	          FormControl,
-	          { componentClass: 'select', multiple: true },
-	          _react2.default.createElement(
-	            'option',
-	            { value: 'select' },
-	            'select (multiple)'
-	          ),
-	          _react2.default.createElement(
-	            'option',
-	            { value: 'other' },
-	            '...'
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        FormGroup,
-	        { controlId: 'formControlsTextarea' },
-	        _react2.default.createElement(
-	          ControlLabel,
-	          null,
-	          'Textarea'
-	        ),
-	        _react2.default.createElement(FormControl, { componentClass: 'textarea', placeholder: 'textarea' })
-	      ),
-	      _react2.default.createElement(
-	        FormGroup,
-	        null,
-	        _react2.default.createElement(
-	          ControlLabel,
-	          null,
-	          'Static text'
-	        ),
-	        _react2.default.createElement(
-	          FormControl.Static,
-	          null,
-	          'email@example.com'
-	        )
-	      ),
-	      _react2.default.createElement(
-	        Button,
-	        { type: 'submit' },
-	        'Submit'
-	      )
-	    );
-	  }
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            { 'class': 'row text-center' },
+	            _react2.default.createElement(
+	                'li',
+	                null,
+	                items,
+	                ' '
+	            )
+	        );
+	    }
 	});
-
-	_reactDom2.default.render(_react2.default.createElement('formInstance', null), document.getElementById('checkbox'));
-
-	_reactDom2.default.render(_react2.default.createElement(Hello, null), document.getElementById('container'));
+	_reactDom2.default.render(_react2.default.createElement(List, null), document.getElementById('list'));
 
 /***/ },
 /* 1 */

@@ -168,11 +168,6 @@
 	    return MyParentComponent;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(CheckboxBox, null), document.getElementById('checkbox'));
-	_reactDom2.default.render(_react2.default.createElement(MyParentComponent, null), document.getElementById('parent'));
-
-	_reactDom2.default.render(_react2.default.createElement(Hello, null), document.getElementById('container'));
-
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {

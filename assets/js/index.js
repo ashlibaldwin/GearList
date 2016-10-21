@@ -77,9 +77,8 @@ class MyParentComponent extends React.Component {
 }
 
 
-ReactDOM.render(<CheckboxBox />, document.getElementById('checkbox'));
-ReactDOM.render(<MyParentComponent />, document.getElementById('parent'));
 
 
 
-ReactDOM.render(<Hello />, document.getElementById('container'))
+
+
