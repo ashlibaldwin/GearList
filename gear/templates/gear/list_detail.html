@@ -37,8 +37,9 @@
 <body>
 
 	<div id="parent"></div>
+	<div id="list"></div>
 
-{% render_bundle 'main' %} 
+{% render_bundle 'checked' %} 
 	
 	<div>
 		<div class="row text-center">
@@ -63,7 +64,7 @@
 			{% for item in items %}
 				<tr>
 					<td>
-				   		<input type="checkbox" id="{{item.title}}" class="strikethrough" />
+				   		<input type="checkbox" id="{{item.id}}" class="strikethrough" />
 				   		<span class="item">{{ item }}</span>   		
 				   	</td>
 
