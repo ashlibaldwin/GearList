@@ -27,6 +27,7 @@ def profile(request):
      #user = UserProfile.objects.get(user=u)
    #except:
      #userprofile = None
+     #http://www.dcs.gla.ac.uk/~leif/di/tutorial/tango-too.html
 
      return render(request, 'gear/profile.html', {})
 
