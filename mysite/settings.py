@@ -145,7 +145,7 @@ BASE_BASE_TEMPLATE = "base.html"
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'ashlicharette@gmail.com'
-EMAIL_HOST_PASSWORD = 'spongebob11'
+EMAIL_HOST_USER = 'gearroompassreset@gmail.com'
+EMAIL_HOST_PASSWORD = 'wiyjzd96ugijTZ'
 EMAIL_USE_TLS = True
 
