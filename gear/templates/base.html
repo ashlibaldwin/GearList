@@ -2,6 +2,8 @@
 {% load staticfiles %}
 
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{% static 'gear/style.css' %}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -17,28 +19,35 @@
 <body>
 
     <header>
-    <div class="page-header">
-        <h1><a href="/">Gear Room</a></h1>
-
-        <div class="navbar">
-            <div class="row col-md-6">
-                {% if user.is_authenticated %}
-             <!--   <a href="/" class="col-md-3">Home</a>
-                <a href="/gear/profile" class="col-md-3">Profile</a> -->
-                <a href="/gear/list" class="col-md-3">My Lists</a>
-                <a href="/gear/logout" class="col-md-3">Log Out</a>
-                {% endif %}
+           <div class="container">
+    
+            
+        
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <ul class="nav">
+                            <li><a href="/"><h2>Gear Room</h2></a></li>
+                            {% if user.is_authenticated %}
+                         <!--   <a href="/" class="col-md-3">Home</a>
+                            <a href="/gear/profile" class="col-md-3">Profile</a> -->
+                            <li class="pull-left"><a href="/gear/list">My Lists</a></li>
+                            <li class="pull-right"><a href="/gear/logout">Log Out</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
             </div>
-
         </div>
-    </div>
+   
+        
     </header>
 
 
 
-    <div class="content container">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
             {% block content %}
 
             {% endblock %}
