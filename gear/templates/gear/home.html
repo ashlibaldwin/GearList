@@ -24,8 +24,17 @@
 }
 
 @media (max-width: 480px) { 
-	.test{ height: 20px;
-		padding:40px;
+	.feature-img p{ 
+		font-size: 16px;
+
+	}  
+
+}
+
+@media (max-width: 480px) { 
+	.feature-img img{ 
+		max-height: 200px;
+
 	}  
 
 }
@@ -62,23 +71,24 @@
 		<a href="gear/login"><button class="btn btn-primary">Log In</button></a>
 		<a href="/gear/register"><button class="btn btn-primary">Sign Up</button></a>
 	</div>
-
+<div class="container">
 	<div class="row home-images">
 
-		<div class="col-md-4 text-center">
+		<div class="col-md-4 col-xs-4 text-center feature-img">
 			<img src="{% static 'gear/images/van.jpeg' %}" />
 			<p>Pack</p>
 		</div>
 
-		<div class="col-md-4 text-center">
+		<div class="col-md-4 col-xs-4 text-center feature-img">
 			<img src="{% static 'gear/images/hiker.jpeg' %}" />
 			<p>Adventure</p>
 		</div>
 
-		<div class="col-md-4 text-center">
+		<div class="col-md-4 col-xs-4 text-center feature-img">
 			<img src="{% static 'gear/images/water.jpeg' %}" />
 			<p>Repeat</p>
 		</div>
+	</div>
 
 	</div>
 			
