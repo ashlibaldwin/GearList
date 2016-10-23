@@ -84,14 +84,7 @@ body {
             <div class="row input-area">
                 <input type="text" id="username" name="username" value="" autocomplete="off" placeholder="Username" />   
             </div>
-                      {% for username in user_form %}
-<div class="username{% if field.errors %} field_error{% endif %}">
-    {% if username.errors%}
-    {{ username.errors }}
-</div>
-{% endif %}
-{% endfor %}
-      
+
 
             <div class="row input-area">
                 <input type="text" id="email" name="email" value="" autocomplete="off" placeholder="Email" />
@@ -101,11 +94,20 @@ body {
                 <input type="password" name="password" value="" placeholder="Password"/>
             </div>
 
+                    {% for username in user_form %}
+                <div class="username{% if field.errors %} field_error{% endif %} row text-center">
+                    {% if username.errors%}
+                    {{ username.errors }}
+                </div>
+                {% endif %}
+                {% endfor %}
+      
             <div class="row">
                 <input class="btn btn-primary" type="submit" value="submit" />
             </div>
 
                 </div>
+
             </form>
         {% endif %}
     </div>
