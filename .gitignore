@@ -5,4 +5,5 @@ myvenv
 db.sqlite3
 /static
 node_modules/
-venv
+venv/
+pip-selfcheck.json
