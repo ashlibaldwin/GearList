@@ -1,0 +1,4 @@
+Django==1.10.2
+django-password-reset==0.9
+django-webpack-loader==0.3.3
+Pillow==3.3.1
