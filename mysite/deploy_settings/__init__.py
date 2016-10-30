@@ -11,5 +11,6 @@ ALLOWED_HOSTS = [
 ]
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
+EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD")
 db_from_env = dj_database_url.config()
 DATABASES["default"].update(db_from_env)
