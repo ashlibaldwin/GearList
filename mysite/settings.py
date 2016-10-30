@@ -144,6 +144,7 @@ BASE_BASE_TEMPLATE = "base.html"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gearroompassreset@gmail.com'
+#security warning. don't use this password in production
 EMAIL_HOST_PASSWORD = 'wiyjzd96ugijTZ'
 EMAIL_USE_TLS = True
 
