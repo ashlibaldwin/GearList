@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'password_reset',
     'webpack_loader',
-    'sslify.middleware.SSLifyMiddleware',
 
 ]
 
@@ -62,6 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'sslify.middleware.SSLifyMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
