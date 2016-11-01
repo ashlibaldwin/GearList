@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'password_reset',
     'webpack_loader',
+    'sslify.middleware.SSLifyMiddleware',
 
 ]
 
