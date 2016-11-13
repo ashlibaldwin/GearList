@@ -3,6 +3,7 @@ from ..settings import *
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG 
+SSLIFY_DISABLE = False
 
 ALLOWED_HOSTS = [
 'localhost',
