@@ -16,6 +16,9 @@ from django.contrib.auth.models import User
 def home(request):
     return render(request, "gear/home.html", {})
 
+def about(request):
+    return render(request, "gear/about.html", {})
+
 def results(request):
     return render(request, "gear/results.html", {})
 

@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^restricted/', views.restricted, name='restricted'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^results/$', views.results, name='results'), 
+    url(r'^about/$', views.about, name='about'), 
 
 ]
