@@ -24,6 +24,8 @@ SECRET_KEY = 'wxurz@nh=aznf@ysp$%&jq!6fik+(i*7*-#yt#$is*&8tgqtr('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SSLIFY_DISABLE = True
+
 ALLOWED_HOSTS = []
 # Application definition
 
@@ -93,8 +95,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gearlist',
+        'USER': 'ashli@gaiagps.com',
+        'PASSWORD': 'B6YBhWTZEJvF8P',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
