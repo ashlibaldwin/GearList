@@ -1,84 +1,56 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Checkbox, FormGroup } from 'react-bootstrap'
-import InlineEdit from 'react-edit-inline';
+var React = require('react')
+var ReactDOM = require('react-dom')
 
+var ListsList = React.createClass({
+    loadListsFromServer: function(){
+        $.ajax({
+            url: this.props.url,
+            datatype: 'json',
+            cache: false,
+            success: function(data) {
+                this.setState({data: data});
+            }.bind(this)
+        })
+    },
 
-var Hello = React.createClass ({
+    getInitialState: function() {
+        return {data: []};
+    },
+
+    componentDidMount: function() {
+        this.loadListsFromServer();
+        setInterval(this.loadListsFromServer, 
+                    this.props.pollInterval)
+    }, 
     render: function() {
+        if (this.state.data) {
+            //console.log('DATA!')
+            var listNodes = this.state.data.map(function(list){
+                var listurl = '/gear/list_detail/' 
+                var deleteurl = '/gear/delete_list/'
+                return (
+                    <div className="inner-box">
+                        <h3>{list.title}</h3>
+                        <a type="button" className="btn btn-primary" href={listurl + list.id}>
+                            <i className="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        <a type="button" className="btn btn-danger" href={deleteurl + list.id}>
+                            <i className="glyphicon glyphicon-trash"></i>
+                        </a>
+
+                    </div>
+                )
+            })
+        }
         return (
-            <h1>
-            Hi, React!
-            </h1>
+            <div>
+                <ul>
+                    {listNodes}
+                </ul>
+            </div>
         )
     }
 })
 
-var CheckboxBox = React.createClass ({
-    render: function() {
-        return (
-        	 <form>
-        	<FormGroup>
-            <Checkbox></Checkbox>
-            </FormGroup>
-             </form>
-        )
-    }
-});
-
-
-
-//demo code for react inplaceedit
-
-class MyParentComponent extends React.Component {
- 
-    constructor(props){
-      super(props);
-      this.dataChanged = this.dataChanged.bind(this);
-      this.state = {
-        message: 'ReactInline demo'
-      }
-    }
- 
-    dataChanged(data) {
-        // data = { description: "New validated text comes here" } 
-        // Update your model from here 
-        console.log(data)
-        this.setState({data})
-    }
- 
-    customValidateText(text) {
-      return (text.length > 0 && text.length < 64);
-    }
- 
-    render() {
-        return (<div>
-            <h2>{this.state.message}</h2>
-            <span>Edit me: </span>
-            <InlineEdit
-              validate={this.customValidateText}
-              activeClassName="editing"
-              text={this.state.message}
-              paramName="message"
-              change={this.dataChanged}
-              style={{
-                backgroundColor: 'yellow',
-                minWidth: 150,
-                display: 'inline-block',
-                margin: 0,
-                padding: 0,
-                fontSize: 15,
-                outline: 0,
-                border: 0
-              }}
-            />
-        </div>)
-    }
-}
-
-
-
-
-
-
-
+ReactDOM.render(<ListsList url='/api/v1/lists' pollInterval={1000} />, 
+    document.getElementById('container'))

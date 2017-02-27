@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'password_reset',
     'webpack_loader',
+    'rest_framework',
 
 ]
 
@@ -97,8 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gearlist',
-        'USER': 'ashli@gaiagps.com',
-        'PASSWORD': 'B6YBhWTZEJvF8P',
+        'USER': os.environ.get('DATABASE_USER', 'ashli@gaiagps.com'),
+        'PASSWORD': os.environ.get('DATABASE_PASS', 'B6YBhWTZEJvF8P'),
         'HOST': 'localhost',
         'PORT': '3306',
     }

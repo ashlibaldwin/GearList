@@ -38,7 +38,8 @@ class Item(models.Model):
 
   title = models.CharField("", max_length=250, unique=False) 
   #user = models.ForeignKey(UserProfile, null=False, default='admin')
-  created_date = models.DateTimeField(default=datetime.datetime.now) 
+  created_date = models.DateTimeField(default=datetime.datetime.now)
+  is_completed=models.BooleanField(default=False)
 
   todo_list = models.ForeignKey(List)
 
