@@ -1,47 +1,51 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-var ListsList = React.createClass({
-    loadListsFromServer: function(){
-        $.ajax({
-            url: this.props.url,
-            datatype: 'json',
-            cache: false,
-            success: function(data) {
-                this.setState({data: data});
-            }.bind(this)
-        })
-    },
 
-    getInitialState: function() {
-        return {data: []};
-    },
+class Lists extends React.Component {
 
-    componentDidMount: function() {
-        this.loadListsFromServer();
-        setInterval(this.loadListsFromServer, 
-                    this.props.pollInterval)
-    }, 
-    render: function() {
+  constructor(props) {
+    super(props)
+    this.state = { data: [] }
+  }
+
+  loadListsFromServer() {
+      $.ajax({
+          url: this.props.url,
+          datatype: 'json',
+          success: (data) => {
+              this.setState({data: data});
+          },
+      error: (xhr, status, err) => {
+        console.error(this.props.url, status, err.toString());
+      }
+    });
+  }
+
+  componentDidMount() {  
+      this.loadListsFromServer();
+      setInterval(this.loadListsFromServer.bind(this), this.props.pollInterval);
+  }
+
+    render() {
         if (this.state.data) {
-            //console.log('DATA!')
-            var listNodes = this.state.data.map(function(list){
-                var listurl = '/gear/list_detail/' 
-                var deleteurl = '/gear/delete_list/'
-                return (
-                    <div className="inner-box">
-                        <h3>{list.title}</h3>
-                        <a type="button" className="btn btn-primary" href={listurl + list.id}>
+            var listNodes = this.state.data.map((list, i) => {
+            var listurl = '/gear/list_detail/'
+            var deleteurl = '/gear/delete/'
+            return (
+                <div key={i} className="inner-box">
+                    <h3>{list.title}</h3>
+                    <a type="button" className="btn btn-primary" href={listurl + list.id}>
                             <i className="glyphicon glyphicon-eye-open"></i>
                         </a>
-                        <a type="button" className="btn btn-danger" href={deleteurl + list.id}>
-                            <i className="glyphicon glyphicon-trash"></i>
-                        </a>
+                    <a type="button" className="btn btn-danger" href={deleteurl + list.id}>
+                        <i className="glyphicon glyphicon-trash"></i>
+                    </a>
 
-                    </div>
-                )
+                </div>
+            )
             })
-        }
+        
         return (
             <div>
                 <ul>
@@ -49,8 +53,10 @@ var ListsList = React.createClass({
                 </ul>
             </div>
         )
+      }
     }
-})
+}
 
-ReactDOM.render(<ListsList url='/api/v1/lists' pollInterval={1000} />, 
+
+ReactDOM.render(<Lists url='/api/v1/lists' pollInterval={15000} />, 
     document.getElementById('container'))

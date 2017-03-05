@@ -1,64 +1,67 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-var items = ['ashli', 'andrew', 'riley', 'carson']
 
-var List = React.createClass ({
+class Items extends React.Component {
 
-	//getInitialState() {},
+  constructor(props) {
+    super(props)
+    this.state = { data: [] }
+  }
 
-    render: function() {
-    	console.log(items)
+  loadListsFromServer() {
+      $.ajax({
+          url: this.props.url,
+          datatype: 'json',
+          success: (data) => {
+              this.setState({data: data});
+          },
+      error: (xhr, status, err) => {
+        console.error(this.props.url, status, err.toString());
+      }
+    });
+  }
+
+  componentDidMount() {  
+      this.loadListsFromServer();
+      setInterval(this.loadListsFromServer.bind(this), this.props.pollInterval);
+  }
+
+    render() {
+       console.log(this.state.data)
+        if (this.state.data) {
+            var itemNodes = this.state.data.map((item, i) => {
+            var deleteurl = '/gear/delete/'
+            return (
+                <div key={i} className="inner-box">
+                    <h3>{item.title}</h3>
+                    <a type="button" className="btn btn-danger" href={deleteurl + item.id}>
+                        <i className="glyphicon glyphicon-trash"></i>
+                    </a>
+
+                </div>
+            )
+            })
+        
         return (
-
-		<div className="row text-center">
-		<table>
-		<tbody>
-		{items.map((items, i) => (
-			<tr key={i}>
-					<td>
-				   		<input type="checkbox" className="strikethrough"  />
-				   		<span className="item">{items}</span>   		
-				   	</td>
-
-				   	<td>
-						<a type="button" className="btn btn-danger pull-right" href="{% url 'gear:delete_item' item.id %}"><i className="glyphicon glyphicon-trash"></i></a>
-					</td>
-				</tr>
-			))  
-		}
-		</tbody>
-		</table>
-		</div>
-
-		        )
+            <div>
+                <ul>
+                    {itemNodes}
+                </ul>
+            </div>
+        )
+      }
     }
-})
+}
+
+
+ReactDOM.render(<Items url='/api/v1/items' pollInterval={15000} />, 
+    document.getElementById('container'))
+
+//add handle click event for is_completed
+//access the parent list somehow
+//I think these componenets should be connected somehow
+
  
 
-const Checkbox = React.createClass ({
-	
-  getInitialState() {
-    return { isChecked: false};
-  },
-
-  toggleChange() {
-    this.setState({
-      isChecked: !this.state.isChecked // flip boolean value
-    }, function() {
-      console.log(this.state);
-    }.bind(this));
-  },
-  render: function() {
-    return (
-      <label>
-        <input
-          type="checkbox"
-          checked={this.state.isChecked}
-          onChange={this.toggleChange} />
-        Check Me!
-      </label>
-    );
-  }
-});
 

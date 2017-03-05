@@ -98,8 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gearlist',
-        'USER': os.environ.get('DATABASE_USER', 'ashli@gaiagps.com'),
-        'PASSWORD': os.environ.get('DATABASE_PASS', 'B6YBhWTZEJvF8P'),
+        'USER': os.environ.get('DATABASE_USER', 'ashli'),
+        'PASSWORD': os.environ.get('DATABASE_PASS', 'Spongebob11!'),
         'HOST': 'localhost',
         'PORT': '3306',
     }
