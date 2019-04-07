@@ -24,8 +24,6 @@ SECRET_KEY = 'wxurz@nh=aznf@ysp$%&jq!6fik+(i*7*-#yt#$is*&8tgqtr('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-SSLIFY_DISABLE = True
-
 ALLOWED_HOSTS = []
 # Application definition
 
@@ -54,16 +52,14 @@ WEBPACK_LOADER = {
     }
 }
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'sslify.middleware.SSLifyMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -97,8 +93,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gearlist',
-        'USER': 'ashli@gaiagps.com',
-        'PASSWORD': 'B6YBhWTZEJvF8P',
+        'USER': 'admin',
+        'PASSWORD': 'password1',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -123,7 +119,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ('mysite.backends.EmailOrUsernameModelBackend',)
+AUTHENTICATION_BACKENDS = (
+    #'mysite.backends.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    )
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
