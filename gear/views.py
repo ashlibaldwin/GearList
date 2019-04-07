@@ -1,12 +1,11 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect, HttpResponse
-from django.core.urlresolvers import reverse
+from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.shortcuts import redirect
 from .models import List, Item, UserProfile
 from .forms import ItemForm, ListForm, UserProfileForm, UserForm
 from django.views.generic.edit import DeleteView # this is the generic view
-from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -34,10 +33,10 @@ def profile(request):
 @login_required
 def list(request):
     username = None
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return HttpResponseRedirect('/')
 
-    elif request.user.is_authenticated:
+    if request.user.is_authenticated:
        
         
         lists = List.objects.filter(user=request.user)
@@ -116,7 +115,7 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
-            user.set_password(user.password)
+            user.set_password(user_form.cleaned_data['password'])
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
@@ -133,7 +132,7 @@ def register(request):
             #login the new user automatically and redirect to homepage
             username = request.POST['username']
             password = request.POST['password']
-            user = authenticate(username=username, password=password)
+            #user = authenticate(username=username, password=password)
             login(request, user)
           
             return HttpResponseRedirect("/")
@@ -155,7 +154,6 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 def user_login(request):
-
     if request.method == 'POST':
         # Gather the username and password provided by the user.
         # This information is obtained from the login form.
@@ -165,7 +163,7 @@ def user_login(request):
 
         # Use Django's machinery to attempt to see if the username/password
         # combination is valid - a User object is returned if it is.
-        user = authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         # If we have a User object, the details are correct.
         # If None (Python's way of representing the absence of a value), no user
@@ -182,7 +180,7 @@ def user_login(request):
                 return HttpResponse("Your account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
-            print ("Invalid login details: {0}, {1}".format(username, password))
+            print ("Invalid login details")
             return HttpResponse("Invalid login details supplied.")
 
     # The request is not a HTTP POST, so display the login form.
