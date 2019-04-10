@@ -1,51 +1,37 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
-
-
-{% load staticfiles %}
 {% load static %}
+
 {% block head %}
+	{% block cssContent %}
+		<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
+		<style type="text/css">
+			.home-images {
+				overflow: hidden;
+				padding-top: 30px;
+			}
 
-{% block cssContent %}
+			.desert {
+				background-image: url("{% static 'gear/images/desert.jpeg' %}");
+				min-height: 400px;
+			}
 
+			@media (max-width: 480px) { 
+				.feature-img p{ 
+					font-size: 16px;
+				}  
+			}
 
-<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
+			@media (max-width: 480px) { 
+				.feature-img img{ 
+					max-height: 200px;
+				}  
+			}
 
-<style type="text/css">
-
-.home-images {
-	overflow: hidden;
-	padding-top: 30px;
-}
-
-.desert {
-	background-image: url("{% static 'gear/images/desert.jpeg' %}");
-	min-height: 400px;
-}
-
-@media (max-width: 480px) { 
-	.feature-img p{ 
-		font-size: 16px;
-
-	}  
-
-}
-
-@media (max-width: 480px) { 
-	.feature-img img{ 
-		max-height: 200px;
-
-	}  
-
-}
-
-
-</style>
+		</style>
+	{% endblock %}
 {% endblock %}
-{% endblock %}
+
 {% block content %}
-
-<body>
 
 <div class="jumbotron">
 	<div class="container text-center">
@@ -55,65 +41,36 @@
 		</div>
 	</div>
 
-
-
 	{% if user.is_authenticated %}
-
 	<div class="container desert">
 		<div class="row text-center">
 			<a  href="/gear/list"><button style="margin-top:60px" type="button" class="btn btn-primary btn-lg">Go To My Lists</button></a>
 		</div>
 	</div>
-			{% else %}
-
-
+	{% else %}
 	<div class="text-center">
 		<a href="gear/login"><button class="btn btn-primary">Log In</button></a>
 		<a href="/gear/register"><button class="btn btn-primary">Sign Up</button></a>
 	</div>
-<div class="container">
-	<div class="row home-images">
 
-		<div class="col-md-4 col-xs-4 text-center feature-img">
-			<img src="{% static 'gear/images/van.jpeg' %}" />
-			<p>Pack</p>
+	<div class="container">
+		<div class="row home-images">
+			<div class="col-md-4 col-xs-4 text-center feature-img">
+				<img src="{% static 'gear/images/van.jpeg' %}" />
+				<p>Pack</p>
+			</div>
+
+			<div class="col-md-4 col-xs-4 text-center feature-img">
+				<img src="{% static 'gear/images/hiker.jpeg' %}" />
+				<p>Adventure</p>
+			</div>
+
+			<div class="col-md-4 col-xs-4 text-center feature-img">
+				<img src="{% static 'gear/images/water.jpeg' %}" />
+				<p>Repeat</p>
+			</div>
 		</div>
-
-		<div class="col-md-4 col-xs-4 text-center feature-img">
-			<img src="{% static 'gear/images/hiker.jpeg' %}" />
-			<p>Adventure</p>
-		</div>
-
-		<div class="col-md-4 col-xs-4 text-center feature-img">
-			<img src="{% static 'gear/images/water.jpeg' %}" />
-			<p>Repeat</p>
-		</div>
-	</div>
-
-	</div>
-			
-			{% endif %}
-		
+	</div>	
+	{% endif %}
 </div>
-
-
-
-
-
-
-</body>
-
-
-
-<script type = "text/javascript">
-
-
-</script>
-
-
 {% endblock %}
-
-
-
-
-</html>

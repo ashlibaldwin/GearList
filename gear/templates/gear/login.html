@@ -1,90 +1,60 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
-
-
-{% load staticfiles %}
+{% load static %}
 {% block head %}
+    {% block cssContent %}
+        <style type="text/css">
+            .img {
+                background-image: url("{% static 'gear/images/stars.jpeg' %}");
+                background-size: cover;
+                min-height: 600px;
+                min-width: 100%;
+            }
 
-{% block cssContent %}
+            body {
+                color: white;
+            }
 
-
-
-<style type="text/css">
-
-.img {
-    background-image: url("{% static 'gear/images/stars.jpeg' %}");
-    background-size: cover;
-    min-height: 600px;
-    min-width: 100%;
-}
-
-body {
-    color: white;
-}
-
-.input-area {
-    padding:5px;
-    color:black;
-}
-
-</style>
+            .input-area {
+                padding:5px;
+                color:black;
+            }
+        </style>
+    {% endblock %}
 {% endblock %}
-{% endblock %}
+
 {% block content %}
-
-<body>
-    <div class="container img">
-        <div class="row">
-
-        <div class="col-md-2 col-md-offset-3 text-center">
-           
+<div class="container img">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-3 text-center"> 
             <h2>Pack.</h2>
         </div>
-
         <div class="col-md-2 text-center">
-         
             <h2>Adventure.</h2>
         </div>
-
         <div class="col-md-2 text-center">
-      
             <h2>Repeat.</h2>
         </div>
     </div>
 
-  
-
     <div class="text-center">
         <h3>Log In</h3>
-
         <form id="login_form" method="post" action="/gear/login/">
             <div class="form-group">
-            {% csrf_token %}
-            
-            <div class="row input-area">
-                <input type="text" id="username" name="username" value="" autocomplete="off" placeholder="Username or Email" />
-            </div>
-
-           <div class="row input-area">
-                <input type="password" name="password" value="" placeholder="Password"/>
-            </div>
-
-            <div class="row">
-                <input class="btn btn-primary" type="submit" value="submit" />
-            </div>
-
+                {% csrf_token %}
+                <div class="row input-area">
+                    <input type="text" id="username" name="username" value="" autocomplete="off" placeholder="Username or Email" />
+                </div>
+               <div class="row input-area">
+                    <input type="password" name="password" value="" placeholder="Password"/>
+                </div>
+                <div class="row">
+                    <input class="btn btn-primary" type="submit" value="submit" />
+                </div>
             </div>
         </form>
-
     </div>
-
     <div class=" text-center">
         <a href="{% url 'password_reset_recover' %}"><h4>Forgot Password?</h4></a>
     </div>
-
-</body>
-
-    {% endblock %}
-
-
-</html>
+</div>
+{% endblock %}

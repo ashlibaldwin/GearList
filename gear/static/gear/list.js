@@ -1,5 +1,3 @@
-
-
 //keep boxed checked and store state locally
 var checkboxValues = JSON.parse(localStorage.getItem('checkboxValues')) || {},
     $checkboxes = $("#checkbox-container :checkbox");

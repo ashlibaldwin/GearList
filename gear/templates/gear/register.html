@@ -1,64 +1,52 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
-
-
-{% load staticfiles %}
+{% load static %}
 {% block head %}
+    {% block cssContent %}
+        <style type="text/css">
+            .main {
+                background-image: url("{% static 'gear/images/utah.jpg' %}");
+                background-size: cover;
+                min-height: 700px;
+                min-width: 100%;
+            }
 
-{% block cssContent %}
+            @media (max-width: 480px) {
+                .main {
+                    min-height:30px;
+                }
+            }
 
+            body {
+                color: white;
+            }
 
+            .input-area {
+                padding-top:5px;
+                padding-bottom: 5px;
+                color:black;
+                font-weight: bold;
+            }
 
-<style type="text/css">
-
-.main {
-    background-image: url("{% static 'gear/images/utah.jpg' %}");
-    background-size: cover;
-    min-height: 700px;
-    min-width: 100%;
-}
-@media (max-width: 480px) {
-    .main {
-        min-height:30px;
-    }
-}
-body {
-    color: white;
-}
-
-.input-area {
-    padding-top:5px;
-    padding-bottom: 5px;
-    color:black;
-    font-weight: bold;
-}
-
-.helptext{
-  display: none;
-}
-
-</style>
-
+            .helptext {
+              display: none;
+            }
+        </style>
+    {% endblock %}
 {% endblock %}
-{% endblock %}
+
 {% block content %}
-   
-<body>
-    <div class="container main">
-        <div class="row">
-            <div class="col-md-2 col-md-offset-3 text-center">
-                <h2>Pack.</h2>
-            </div>
-
-            <div class="col-md-2 text-center">
-                <h2>Adventure.</h2>
-            </div>
-
-            <div class="col-md-2 text-center">
-                <h2>Repeat.</h2>
-            </div>
+<div class="container main">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-3 text-center">
+            <h2>Pack.</h2>
         </div>
-    
+        <div class="col-md-2 text-center">
+            <h2>Adventure.</h2>
+        </div>
+        <div class="col-md-2 text-center">
+            <h2>Repeat.</h2>
+        </div>
+    </div>
 
     <div class="row text-center">
         <h1>Register</h1>
@@ -66,54 +54,33 @@ body {
         {% if registered %}
             <h2>thank you for registering!
             <a href="/gear/login">Click here to login</a></h2><br />
-
         {% else %}
-
             <form id="user_form" method="post" action="/gear/register/">
-                <!--enctype="multipart/form-data">-->
-
                 <div class="form-group">
-
-                {% csrf_token %}
-
-             <!--    {{ user_form.as_p }} -->
-        
-          <!--  {{ profile_form.as_p }} -->
-
-      
-            <div class="row input-area">
-                <input type="text" id="username" name="username" value="" autocomplete="off" placeholder="Username" />   
-            </div>
-
-
-            <div class="row input-area">
-                <input type="text" id="email" name="email" value="" autocomplete="off" placeholder="Email" />
-            </div>
-
-           <div class="row input-area">
-                <input type="password" name="password" value="" placeholder="Password"/>
-            </div>
+                    {% csrf_token %}
+                    <div class="row input-area">
+                        <input type="text" id="username" name="username" value="" autocomplete="off" placeholder="Username" />   
+                    </div>
+                    <div class="row input-area">
+                        <input type="text" id="email" name="email" value="" autocomplete="off" placeholder="Email" />
+                    </div>
+                    <div class="row input-area">
+                        <input type="password" name="password" value="" placeholder="Password"/>
+                    </div>
 
                     {% for username in user_form %}
-                <div class="username{% if field.errors %} field_error{% endif %} row text-center">
-                    {% if username.errors%}
-                    {{ username.errors }}
+                        <div class="username{% if field.errors %} field_error{% endif %} row text-center">
+                            {% if username.errors %}
+                                {{ username.errors }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <div class="row">
+                        <input class="btn btn-primary" type="submit" value="submit" />
+                    </div>
                 </div>
-                {% endif %}
-                {% endfor %}
-      
-            <div class="row">
-                <input class="btn btn-primary" type="submit" value="submit" />
-            </div>
-
-                </div>
-
             </form>
         {% endif %}
     </div>
-</body>
-
-    {% endblock %}
-
-
-</html>
+</div>
+{% endblock %}
