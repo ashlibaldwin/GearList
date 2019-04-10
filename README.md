@@ -86,6 +86,9 @@ At this point the server should start and you can view the website locally at ht
 
 - sometimes deleting env and creating a new one fixes stuff
 
+- database image not found:
+`export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/`
+
 
 ### To start the server next time, from the project root just run
 
