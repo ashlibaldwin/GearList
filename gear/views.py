@@ -113,11 +113,15 @@ def register(request):
 
 
 def user_login(request):
+    print("fadshfisdafhilsdfa")
     if request.method == 'POST':
+        print("POST")
         username = request.POST['username']
-        #email = request.POST['email']
+        print(username)
         password = request.POST['password']
+        print(password)
         user = authenticate(request, username=username, password=password)
+
         if user:
             if user.is_active:
                 login(request, user)
@@ -125,7 +129,6 @@ def user_login(request):
             else:
                 return HttpResponse("Your account is disabled.")
         else:
-            print ("Invalid login details")
             return HttpResponse("Invalid login details supplied.")
     else:
         return render(request, 'gear/login.html', {})
