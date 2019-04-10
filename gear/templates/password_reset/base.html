@@ -1,31 +1,16 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
-{% load render_bundle from webpack_loader %}
-
-
-{% load staticfiles %}
+{% load static %}
 {% block head %}
+	{% block jsContent %}
+	<script type = "text/javascript" src="{% static 'gear/list.js' %}"></script>
+	{% endblock %}
 
-{% block jsContent %}
-<script type = "text/javascript" src="{% static 'gear/list.js' %}"></script>
+	{% block cssContent %}
+		<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
+	{% endblock %}
+
 {% endblock %}
 
-{% block cssContent %}
-
-<link rel="stylesheet"  href="{% static 'gear/style.css' %}" />
-
-{% endblock %}
-{% endblock %}
 {% block content %}
 
-<body>
-
-
-
-</body>
-
-
 {% endblock %}
-
-
-</html>

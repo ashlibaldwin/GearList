@@ -1,31 +1,17 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
-
-{% load staticfiles %}
+{% load static %}
 {% block head %}
-
-{% block jsContent %}
+    {% block cssContent %}
+    <link rel="stylesheet"  href="{% static 'gear/profile.css' %}" />
+    {% endblock %}
 {% endblock %}
 
-{% block cssContent %}
-
-<link rel="stylesheet"  href="{% static 'gear/profile.css' %}" />
-<style type="text/css">
-	
-
-</style>
-{% endblock %}
-{% endblock %}
 {% block content %}
-
-<body>
 <div class="jumbotron hero-unit">
-    
     <h2>Username</h2>
     <p>{{ user.username }}</p>
     <h2>Email</h2> 
     <p>{{ user.email }}</p>
-
     {% if userprofile %}
         <p>Website: <a href="{{ userprofile.website }}">{{ userprofile.website }}</a></p>
         <br/>
@@ -33,18 +19,5 @@
             <img src="{{ userprofile.picture.url }}"  />
         {% endif %}
     {% endif %}
-
 </div>
-
-
-
-</body>
-
-
-
 {% endblock %}
-
-
-
-
-</html>

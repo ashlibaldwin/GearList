@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-
 {% extends 'base.html' %}
-% load staticfiles %}
+{% load staticfiles %}
 {% block content %}
-
-<body>
-	<div class="text-center">
-		<strong>Are you sure you want to delete {{ object.title }}?</strong>
-		<form method="post">
-		  {% csrf_token %}
-		  <button type="submit" class="btn btn-danger">I'm sure</button>
-		  <input class="btn btn-info" type="button" value="Nevermind" onclick="window.history.back()" />
-		</form>
-	</div>
-
-</body>
+<div class="text-center">
+	<strong>Are you sure you want to delete {{ object.title }}?</strong>
+	<form method="post">
+	  {% csrf_token %}
+	  <button type="submit" class="btn btn-danger">I'm sure</button>
+	  <input class="btn btn-info" type="button" value="Nevermind" onclick="window.history.back()" />
+	</form>
+</div>
 {% endblock %}
-</html>
+
 
 
