@@ -10,21 +10,27 @@
                 min-width: 100%;
             }
 
-            body {
+            .register-text, .errorlist{
                 color: white;
             }
 
-            .input-area {
-                padding:5px;
-                color:black;
+            .errorlist {
+                padding:0;
             }
+
+            p input {
+                margin: 8px 0;
+                padding: 8px 0;
+            }
+
+
         </style>
     {% endblock %}
 {% endblock %}
 
 {% block content %}
 <div class="container img">
-    <div class="row">
+    <div class="row register-text">
         <div class="col-md-2 col-md-offset-3 text-center"> 
             <h2>Pack.</h2>
         </div>
@@ -37,16 +43,24 @@
     </div>
 
     <div class="text-center">
-        <h3>Log In</h3>
+        <h3 class="register-text">Log In</h3>
         <form id="login_form" method="post" action="/gear/login/">
             <div class="form-group">
                 {% csrf_token %}
-                <div class="row input-area">
-                    <input type="text" id="username" name="username" value="" autocomplete="off" placeholder="Username or Email" />
-                </div>
-               <div class="row input-area">
-                    <input type="password" name="password" value="" placeholder="Password"/>
-                </div>
+                {{login_form.as_p}}
+                {% if form.non_field_errors %}
+                    <ul class='form-errors'>
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if form.errors %}
+                    <p class="label label-danger">
+                        Your username and password didn't match. 
+                        Please try again.
+                    </p>
+                {% endif %}
                 <div class="row">
                     <input class="btn btn-primary" type="submit" value="submit" />
                 </div>
@@ -54,7 +68,7 @@
         </form>
     </div>
     <div class=" text-center">
-        <a href="{% url 'password_reset_recover' %}"><h4>Forgot Password?</h4></a>
+        <a href="{% url 'password_reset_recover' %}"><h4 class="register-text">Forgot Password?</h4></a>
     </div>
 </div>
 {% endblock %}

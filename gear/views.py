@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.shortcuts import redirect
 from .models import List, Item, UserProfile
-from .forms import ItemForm, ListForm, UserProfileForm, UserForm
+from .forms import ItemForm, ListForm, UserProfileForm, UserForm, LoginForm
 from django.views.generic.edit import DeleteView # this is the generic view
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -80,6 +80,7 @@ def delete_item(request, pk):
     
     return render(request, 'gear/delete_item.html', {'object':item})
 
+
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -113,21 +114,16 @@ def register(request):
 
 
 def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-
+    form = LoginForm(request.POST or None)
+    if request.POST and form.is_valid():
+        user = form.login(request)
         if user:
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect('/gear/list')
             else:
                 return HttpResponse("Your account is disabled.")
-        else:
-            return HttpResponse("Invalid login details supplied.")
-    else:
-        return render(request, 'gear/login.html', {})
+    return render(request, 'gear/login.html', {'login_form': form })
 
 
 @login_required

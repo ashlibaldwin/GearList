@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import List, Item, UserProfile, User
+from django.contrib.auth import authenticate
 
 
 class ListForm(forms.ModelForm):
@@ -32,6 +33,34 @@ class UserForm(forms.ModelForm):
         if email and User.objects.filter(email=email).exclude(username=username).count():
             raise forms.ValidationError(u'Email address must be unique.')
         return email
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        max_length=255, 
+        required=True, 
+        label='',
+        widget=forms.TextInput(attrs={'placeholder': 'username'})
+        )
+    password = forms.CharField(
+        required=True, 
+        label='',
+        widget=forms.PasswordInput(attrs={'placeholder':'password'})
+        )
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        if not user or not user.is_active:
+            raise forms.ValidationError("Sorry, that login was invalid. Please try again.")
+        return self.cleaned_data
+
+    def login(self, request):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        return user
        
 
 class UserProfileForm(forms.ModelForm):
