@@ -7,12 +7,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'gear/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    {% block base_css %}{% endblock %}
 	{% block cssContent %}{% endblock %}
-	{% block override_css %}{% endblock %}
 </head>
 
 <body>
@@ -20,23 +17,21 @@
         <div class="container">
             <div class="navbar">
                 <div class="navbar-inner">
-                    <div class="container">
-                        <ul class="nav">
-                            <li>
-                                <a href="/">
-                                    <h3>Gear Room</h3>
-                                </a>
+                    <ul class="nav">
+                        <li>
+                            <a href="/">
+                                <h3>Gear Room</h3>
+                            </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="pull-left">
+                                <a href="/gear/list">My Lists</a>
                             </li>
-                            {% if user.is_authenticated %}
-                                <li class="pull-left">
-                                    <a href="/gear/list">My Lists</a>
-                                </li>
-                                <li class="pull-right">
-                                    <a href="/gear/logout">Log Out</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
+                            <li class="pull-right">
+                                <a href="/gear/logout">Log Out</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
         </div>
