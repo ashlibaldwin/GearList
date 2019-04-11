@@ -113,13 +113,9 @@ def register(request):
 
 
 def user_login(request):
-    print("fadshfisdafhilsdfa")
     if request.method == 'POST':
-        print("POST")
         username = request.POST['username']
-        print(username)
         password = request.POST['password']
-        print(password)
         user = authenticate(request, username=username, password=password)
 
         if user:
