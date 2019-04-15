@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'gearlist.urls'
 LOGIN_URL = '/gear/login/'
 
 TEMPLATES = [
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'gearlist.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'mysite.backends.EmailOrUsernameModelBackend',
+    'gearlist.backends.EmailOrUsernameModelBackend',
     'django.contrib.auth.backends.ModelBackend',
     )
 
