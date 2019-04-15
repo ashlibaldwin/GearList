@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+import logging
 
 
 def home(request):
@@ -59,6 +61,20 @@ def list_detail(request, pk):
         form = ItemForm()
 
     return render(request, 'gear/list_detail.html', {'items': items, 'form': form, 'lists':lists})
+
+
+def update_item(request, item_id):
+    if request.method == 'POST': 
+        obj = Item.objects.get(pk=item_id)
+        if obj.checked:
+            obj.checked = False
+        else:
+            obj.checked = True
+        
+        obj.save()
+        return JsonResponse({'result':'ok'})
+    else:
+        return JsonResponse({'result':'nok'})
 
 
 def delete_list(request, pk):
