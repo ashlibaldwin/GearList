@@ -28,7 +28,7 @@
 {% block content %}
 <div>
 	<div class="row text-center">
-		<h1>{{ lists }} </h1>  
+		<h1>{{ lists }}</h1>  
 	</div>
 	<form method="POST">{% csrf_token %} 
 		<div class="row">
@@ -45,8 +45,8 @@
 					{% for item in items %}
 						<tr>
 							<td>
-						   		<input type="checkbox" id="{{item.id}}" class="strikethrough" />
-						   		<span class="item">{{ item }}</span>   		
+						   		<input {% if item.checked %}checked{% endif %} type="checkbox" id="{{item.id}}" class="strikethrough" onClick="{ checkBoxes({{item.id}}) }" />
+						   		<span class="item">{{ item }}</span>
 						   	</td>
 
 						   	<td>
